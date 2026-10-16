@@ -53,14 +53,21 @@ nav a:hover{color:var(--laden);text-decoration:underline}
 .hero .label{color:var(--on-putz)}
 .hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:end;padding-block:var(--s6) 0;gap:var(--s5)}
 .hero-text{display:grid;gap:var(--s4);align-self:center;padding-bottom:var(--s5)}
-.hero-hint{font:500 13px/1.4 var(--font-text);color:var(--ink-muted)}
 .hero-bild{align-self:end;margin-bottom:-1px}
 .hero-art{display:block;width:100%;height:auto}
 @media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:var(--s5) 0}.hero-text{padding-bottom:0}}
-.hero-art .fassade{fill:#f1dc9f}
-.hero-art .traufe{fill:#8b8f88}
+.hero-art .fassade{fill:var(--putz)}
+.hero-art .traufe{fill:#1f2620;opacity:.18}
 .hero-art .schatten{fill:#1f2620;opacity:.08}
-.hero-art .sockel{fill:#e4cd8c}
+.hero-art .boden{fill:#1f2620;opacity:.14}
+.hero-art .tor-hinweis text,.hero-art .tor-link text{font:500 12px var(--font-text);letter-spacing:.02em}
+.hero-art .tor-hinweis text{fill:#1f2620;opacity:.55}
+.hero-art .pfeil{fill:none;stroke:#1f2620;stroke-width:1.2;opacity:.45}
+.hero-art .tor-link{opacity:0;pointer-events:none;transition:opacity .4s .5s}
+.hero-art .tor-link text{fill:var(--laden-fest);font-weight:600;text-decoration:underline}
+.hero-art .tor-hinweis{transition:opacity .3s}
+.hero-art:has(.tor:hover) .tor-hinweis,.hero-art:has(.tor.offen) .tor-hinweis{opacity:0}
+.hero-art:has(.tor:hover) .tor-link,.hero-art:has(.tor.offen) .tor-link,.hero-art .tor-link:hover,.hero-art .tor-link:focus{opacity:1;pointer-events:auto}
 .hero-art .laden{fill:var(--laden-fest)}
 .hero-art .rahmen{fill:#fbfaf5}
 .hero-art .bank{fill:#c9c4b4}
