@@ -118,8 +118,16 @@ section.block .wrap{padding-block:var(--s6);display:grid;gap:var(--s5)}
 .preise{list-style:none;margin:0;padding:0;display:grid}
 .preise li{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--linie);flex-wrap:wrap}
 .preise li:last-child{border-bottom:1px solid var(--linie)}
-.preise strong{font:600 24px/1.2 var(--font-display);font-variant-numeric:tabular-nums}
+.preise strong{font:600 clamp(18px,4.6vw,24px)/1.2 var(--font-display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.preise li > span{min-width:0}
+@media (max-width:560px){.preise li,.dokumente li{flex-wrap:nowrap}.dokumente .hinweis{font-size:12px;text-align:right}}
 .cta{display:grid;gap:var(--s3);justify-items:start}
+.dokumente{display:grid;gap:var(--s2);margin-top:var(--s3);width:100%}
+.dokumente ul{list-style:none;margin:0;padding:0;display:grid}
+.dokumente li{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);padding:var(--s2) 0;border-top:1px solid var(--linie);flex-wrap:wrap}
+.dokumente li:last-child{border-bottom:1px solid var(--linie)}
+.dokumente a{font-weight:600}
+.dokumente a::before{content:"↓ ";font-weight:400}
 .button{display:inline-flex;align-items:center;gap:var(--s2);font:600 16px/20px var(--font-text);padding:14px var(--s4);background:var(--laden);color:var(--on-laden);text-decoration:none;border:2px solid var(--laden)}
 .button:hover{background:var(--ink);border-color:var(--ink);color:var(--kalk)}
 .button:focus-visible{outline:none;box-shadow:var(--focus)}
@@ -255,16 +263,24 @@ t.addEventListener('click',function(){t.classList.toggle('offen')});})();
       <div class="head">
         <span class="label">Mitmachen</span>
         <h2>Mitglied werden</h2>
-        <p>Werde Mitglied im Verein und gestalte das Leben im Birkenhof mit.</p>
+        <p>Werde Mitglied im Verein und gestalte das Leben im Birkenhof mit. Mitglied werden kann jede Person, die im Birkenhof wohnt oder die Ziele des Vereins unterstützt.</p>
       </div>
       <div class="mitglied">
         <ul class="preise">
-          <li><span>Erwachsene</span><strong>25&nbsp;€ <span class="hinweis">pro Jahr</span></strong></li>
-          <li><span>Kinder</span><strong>kostenlos</strong></li>
+          <li><span>Erwachsene</span><strong>20&nbsp;€ <span class="hinweis">pro Jahr</span></strong></li>
+          <li><span>Jugendliche (14–18 Jahre)</span><strong>10&nbsp;€ <span class="hinweis">pro Jahr</span></strong></li>
+          <li><span>Kinder bis 14 Jahre</span><strong>beitragsfrei</strong></li>
         </ul>
         <div class="cta">
           <a class="button" href="https://formular.vereinsplaner.com/b3fb1bd7-8fcc-4609-85f3-718c0fed277a" target="_blank" rel="noopener">Zum Mitgliedsantrag <span aria-hidden="true">→</span></a>
           <p class="hinweis">Der Antrag öffnet sich in einem neuen Fenster beim Vereinsplaner, unserer Online-Vereinsverwaltung.</p>
+          <div class="dokumente">
+            <span class="label">Bitte vor dem Antrag lesen</span>
+            <ul>
+              <li><a href="dokumente/satzung-unser-birkenhof.pdf" target="_blank" rel="noopener">Satzung</a><span class="hinweis">PDF, 5 Seiten</span></li>
+              <li><a href="dokumente/beitragsordnung-unser-birkenhof.pdf" target="_blank" rel="noopener">Beitragsordnung</a><span class="hinweis">PDF, 3 Seiten, Juli 2026</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -286,7 +302,7 @@ t.addEventListener('click',function(){t.classList.toggle('offen')});})();
           <ul class="people">
             <li>Dr. Barbara Löffler <span>Vorsitzende</span></li>
             <li>Christian Betz <span>stellv. Vorsitzender</span></li>
-            <li>Marcel Rößner <span>Kassier</span></li>
+            <li>Marcel Rößner <span>Schatzmeister</span></li>
           </ul>
         </div>
       </div>
@@ -299,7 +315,7 @@ t.addEventListener('click',function(){t.classList.toggle('offen')});})();
   <div class="wrap">
     <span>Unser Birkenhof e.V. i. G. · www.unser-birkenhof.de</span>
     <span>Made with <span class="heart" aria-label="Liebe">♥</span> in Augsburg</span>
-    <span><a href="impressum.html#impressum">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
+    <span><a href="dokumente/satzung-unser-birkenhof.pdf" target="_blank" rel="noopener">Satzung</a> · <a href="dokumente/beitragsordnung-unser-birkenhof.pdf" target="_blank" rel="noopener">Beitragsordnung</a> · <a href="impressum.html#impressum">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
   </div>
 </footer>
 </body>
