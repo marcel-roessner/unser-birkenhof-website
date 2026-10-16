@@ -101,6 +101,7 @@ section.block .wrap{padding-block:var(--s6);display:grid;gap:var(--s5)}
 /* Termine */
 .alt{border-top:1px solid var(--linie)}
 .events:empty{display:none}
+[hidden]{display:none!important}
 .events{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3)}
 .event{display:grid;grid-template-columns:120px 1fr;gap:var(--s4);padding:var(--s4) 0;border-top:1px solid var(--linie)}
 .event .date{font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
@@ -257,10 +258,11 @@ t.addEventListener('click',function(){t.classList.toggle('offen')});})();
       </div>
       <!--
         TERMINE EINTRAGEN
-        1. Den Block <div class="empty">…</div> unten löschen.
-        2. Pro Termin dieses Muster in die <ul class="events"> kopieren und ausfüllen:
+        Pro Termin dieses Muster in die <ul class="events"> kopieren und ausfüllen.
+        data-datum im Format JJJJ-MM-TT: Am Tag nach dem Termin verschwindet er automatisch.
+        Sind keine Termine mehr übrig, erscheint der Hinweis „Derzeit sind keine Termine eingetragen“.
 
-        <li class="event">
+        <li class="event" data-datum="2026-06-12">
           <div class="date">12.06.<span>Samstag</span></div>
           <div class="body">
             <span class="tag">Begegnung</span>   (oder: class="tag hof" / class="tag haus")
@@ -273,11 +275,34 @@ t.addEventListener('click',function(){t.classList.toggle('offen')});})();
           </div>
         </li>
       -->
-      <ul class="events"></ul>
-      <div class="empty">
+      <ul class="events">
+        <li class="event" data-datum="2026-11-08">
+          <div class="date">08.11.<span>Sonntag</span></div>
+          <div class="body">
+            <span class="tag">Begegnung</span>
+            <h3>Vereinstreffen: Get&#8209;together im Wirtshaus</h3>
+            <p>Wir laden euch zu einem gemütlichen Abend ein. Gegen 18:00 Uhr berichten wir über die Entwicklungen rund um den Verein. Für Mitglieder und Interessierte, natürlich unverbindlich.</p>
+            <dl>
+              <div><dt>Uhrzeit</dt><dd>ab 17:00 Uhr</dd></div>
+              <div><dt>Ort</dt><dd>Wirtshaus am Lech</dd></div>
+            </dl>
+          </div>
+        </li>
+      </ul>
+      <div class="empty" hidden>
         <h3>Derzeit sind keine Termine eingetragen.</h3>
         <p>Neue Termine erscheinen hier. Fragen und Ideen gern an <a href="mailto:hallo@unser-birkenhof.de">hallo@unser-birkenhof.de</a>.</p>
       </div>
+      <script>
+      (function(){
+        var heute=new Date();heute.setHours(0,0,0,0);
+        document.querySelectorAll('.events .event[data-datum]').forEach(function(li){
+          var d=new Date(li.getAttribute('data-datum')+'T00:00:00');
+          if(!isNaN(d)&&d<heute)li.remove();
+        });
+        if(!document.querySelector('.events .event'))document.querySelector('.empty').hidden=false;
+      })();
+      </script>
     </div>
   </section>
 
