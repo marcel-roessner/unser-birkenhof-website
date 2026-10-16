@@ -97,6 +97,16 @@ nav a:hover{color:var(--laden);text-decoration:underline}
 .hero-art .tor:hover .hopp2,.hero-art .tor.offen .hopp2{animation-delay:.68s}
 @keyframes winken{0%{opacity:1}50%{opacity:0}}
 @keyframes jubelsprung{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+.spiel-start{justify-self:start;font:500 14px/1.4 var(--font-text);color:var(--ink-muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-color:rgba(31,38,32,.3);text-underline-offset:4px}
+.spiel-start:hover{color:var(--ink);text-decoration-color:currentColor}
+.hero-art .nachbar{opacity:0;transform:translateY(8px);transition:opacity .15s,transform .2s}
+.hero-art .fenster.da .nachbar{opacity:1;transform:none}
+.hero-art .fenster.da .winkarm{transform-box:fill-box;transform-origin:50% 100%;animation:wink .3s ease-in-out infinite alternate}
+@keyframes wink{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+.hero-art .hallo{font:700 13px var(--font-text);fill:#1f2620;opacity:0;transition:opacity .2s}
+.hero-art .fenster.gegruesst .hallo{opacity:1}
+.hero-art .spiel-status{font:600 14px var(--font-text);fill:#1f2620}
+.hero-art.spielt .fenster{cursor:pointer}
 .hero-art .ld{transform-box:fill-box}
 .hero-art .ld-l{transform-origin:right center}
 .hero-art .ld-r{transform-origin:left center}
