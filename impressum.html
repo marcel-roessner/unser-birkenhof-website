@@ -51,40 +51,42 @@ nav a:hover{color:var(--laden);text-decoration:underline}
 .hero h1{font-size:clamp(40px,8vw,88px);line-height:.95;letter-spacing:-.02em}
 .hero .claim{font:500 clamp(20px,2.4vw,26px)/1.35 var(--font-text)}
 .hero .label{color:var(--on-putz)}
-.band{height:32px;background-color:var(--putz);
-  background-image:linear-gradient(90deg,transparent 0 8px,var(--laden-fest) 8px 16px,transparent 16px 40px,var(--laden-fest) 40px 48px,transparent 48px),
-  linear-gradient(90deg,transparent 0 16px,var(--on-putz) 16px 40px,transparent 40px);
-  background-size:144px 20px,144px 20px;background-position:0 6px,0 6px;background-repeat:repeat-x}
-.band{position:relative;height:80px;background-size:144px 24px,144px 24px;background-position:0 28px,0 28px}
-.band svg{position:absolute;bottom:0;display:block}
-.band .tor{left:288px}
-.band .baum{left:776px}
-@media (max-width:860px){.band .tor{left:0}.band .baum{left:200px}}
-.band .tor{--tor:#6e5038;--tor-hell:#9a7756;--tor-dunkel:#3d2c1f}
-.band .tor .tor{fill:var(--tor)}
-.band .tor-dunkel{fill:var(--tor-dunkel)}
-.band .tor-linie{stroke:var(--tor-hell);stroke-width:2;fill:none}
-.band .tor-fuge{fill:none;stroke:var(--tor-dunkel);stroke-width:2}
-.band .stein{fill:#d6ccb2}
-.band .tor{cursor:pointer;pointer-events:auto}
-.band .bein{fill:#1f2620}
-.band .fluegel{transform-box:view-box;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
-.band .fl-l{transform-origin:58px 50px}
-.band .fl-r{transform-origin:142px 50px}
-.band .tor:hover .fluegel,.band .tor.offen .fluegel{transform:scaleX(.1)}
-.band .mensch{transform-box:fill-box;transform-origin:50% 100%}
-.band .tor:hover .hopp,.band .tor.offen .hopp{animation:hopp .45s ease-in-out .5s infinite alternate}
-.band .tor:hover .hopp2,.band .tor.offen .hopp2{animation:hopp .5s ease-in-out .7s infinite alternate}
-.band .tor:hover .m2,.band .tor.offen .m2{animation:wipp .9s ease-in-out .6s infinite alternate}
-.band .tor:hover .m1,.band .tor.offen .m1{animation:wipp .8s ease-in-out .5s infinite alternate}
-.band .tor:hover .m3,.band .tor.offen .m3{animation:wipp .8s ease-in-out .9s infinite alternate-reverse}
-@keyframes hopp{to{transform:translateY(-4px)}}
-@keyframes wipp{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
-@media (prefers-reduced-motion:reduce){.band .fluegel{transition:none}.band .mensch{animation:none!important}}
-.band .hell{fill:#fffcf6}
-.band .grund{fill:var(--putz)}
-.band .laden{fill:var(--laden-fest)}
-.band .dunkel{fill:var(--on-putz)}
+.hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:end;padding-block:var(--s6) 0;gap:var(--s5)}
+.hero-text{display:grid;gap:var(--s4);align-self:center;padding-bottom:var(--s5)}
+.hero-hint{font:500 13px/1.4 var(--font-text);color:var(--ink-muted)}
+.hero-bild{align-self:end;margin-bottom:-1px}
+.hero-art{display:block;width:100%;height:auto}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:var(--s5) 0}.hero-text{padding-bottom:0}}
+.hero-art .fassade{fill:#f1dc9f}
+.hero-art .traufe{fill:#8b8f88}
+.hero-art .schatten{fill:#1f2620;opacity:.08}
+.hero-art .sockel{fill:#e4cd8c}
+.hero-art .laden{fill:var(--laden-fest)}
+.hero-art .rahmen{fill:#fbfaf5}
+.hero-art .bank{fill:#c9c4b4}
+.hero-art .glas{fill:#3e4b4f}
+.hero-art .spiegel{fill:#fff;opacity:.10}
+.hero-art .krone{fill:var(--laden-fest)}
+.hero-art .krone2{fill:#3b7d52}
+.hero-art .stamm{fill:#fbfaf5}
+.hero-art .ritz{fill:#1f2620}
+.hero-art .tor{--tor:#6e5038;--tor-hell:#9a7756;--tor-dunkel:#3d2c1f;cursor:pointer}
+.hero-art .tor .tor{fill:var(--tor)}
+.hero-art .tor-dunkel{fill:var(--tor-dunkel)}
+.hero-art .tor-linie{stroke:var(--tor-hell);stroke-width:2;fill:none}
+.hero-art .tor-fuge{fill:none;stroke:var(--tor-dunkel);stroke-width:2}
+.hero-art .stein{fill:#d6ccb2}
+.hero-art .bein{fill:#1f2620}
+.hero-art .fluegel{transform-box:fill-box;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+.hero-art .fl-l{transform-origin:left center}
+.hero-art .fl-r{transform-origin:right center}
+.hero-art .tor:hover .fluegel,.hero-art .tor.offen .fluegel{transform:scaleX(.1)}
+.hero-art .mensch{transform-box:fill-box;transform-origin:50% 100%}
+.hero-art .tor:hover .hopp,.hero-art .tor.offen .hopp{animation:hopp .45s ease-in-out .5s infinite alternate}
+.hero-art .tor:hover .hopp2,.hero-art .tor.offen .hopp2{animation:hopp .5s ease-in-out .7s infinite alternate}
+.hero-art .tor:hover .m2,.hero-art .tor.offen .m2{animation:wipp .9s ease-in-out .6s infinite alternate}
+.hero-art .tor:hover .m1,.hero-art .tor.offen .m1{animation:wipp .8s ease-in-out .5s infinite alternate}
+.hero-art .tor:hover .m3,.hero-art .tor.offen .m3{animation:wipp .8s ease-in-out .9s infinite alternate-reverse}
 
 section.block{border-top:1px solid var(--linie)}
 section.block .wrap{padding-block:var(--s6);display:grid;gap:var(--s5)}
@@ -101,6 +103,7 @@ section.block .wrap{padding-block:var(--s6);display:grid;gap:var(--s5)}
 /* Termine */
 .alt{border-top:1px solid var(--linie)}
 .events:empty{display:none}
+[hidden]{display:none!important}
 .events{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3)}
 .event{display:grid;grid-template-columns:120px 1fr;gap:var(--s4);padding:var(--s4) 0;border-top:1px solid var(--linie)}
 .event .date{font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
