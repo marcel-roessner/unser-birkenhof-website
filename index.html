@@ -127,7 +127,9 @@ section.block .wrap{padding-block:var(--s6);display:grid;gap:var(--s5)}
 .dokumente li{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);padding:var(--s2) 0;border-top:1px solid var(--linie);flex-wrap:wrap}
 .dokumente li:last-child{border-bottom:1px solid var(--linie)}
 .dokumente a{font-weight:600}
-.dokumente a::before{content:"↓ ";font-weight:400}
+.dokumente a:first-child::before{content:"→ ";font-weight:400}
+.dokumente a.hinweis{font-weight:400;color:var(--ink-muted)}
+.dokumente a.hinweis::before{content:"↓ "}
 .button{display:inline-flex;align-items:center;gap:var(--s2);font:600 16px/20px var(--font-text);padding:14px var(--s4);background:var(--laden);color:var(--on-laden);text-decoration:none;border:2px solid var(--laden)}
 .button:hover{background:var(--ink);border-color:var(--ink);color:var(--kalk)}
 .button:focus-visible{outline:none;box-shadow:var(--focus)}
@@ -164,6 +166,27 @@ footer a{color:var(--ink-muted)}
 .pagehead{padding-block:var(--s6) 0;display:grid;gap:var(--s3)}
 .pagehead h1{font-size:clamp(32px,5vw,48px);line-height:1.05;letter-spacing:-.01em}
 .heart{color:var(--ziegel)}
+.doc{padding-block:0 var(--s6);display:grid;gap:var(--s5)}
+.docmeta{color:var(--ink-muted);font-size:15px}
+.toc{border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);padding:var(--s3) 0;max-width:68ch}
+.toc summary{cursor:pointer;font:600 12px/16px var(--font-text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+.toc ol{list-style:none;margin:var(--s3) 0 0;padding:0;columns:2 260px;column-gap:var(--s5)}
+.toc li{break-inside:avoid;padding:3px 0;font-size:15px}
+.toc a{color:var(--ink);text-decoration:none}.toc a:hover{color:var(--laden);text-decoration:underline}
+.doctext{display:grid;gap:var(--s3);max-width:68ch}
+.doctext .para{display:grid;gap:var(--s3);scroll-margin-top:96px;padding-top:var(--s4)}
+.doctext h2{font-size:clamp(20px,2.4vw,24px);line-height:1.25;font-weight:500}
+.doctext h2 span{color:var(--laden);font-weight:600;margin-right:6px}
+.doctext p{max-width:none}
+.doctext .abs,.doctext .li{display:grid;grid-template-columns:2.2em 1fr;gap:4px}
+.doctext .li{padding-left:2.2em}
+.doctext .abs + .li,.doctext p + .li{margin-top:-6px}
+.doctext .nr{font-variant-numeric:tabular-nums;color:var(--ink-muted)}
+.doctext .lead-doc{font:500 18px/1.5 var(--font-text)}
+.doctext .ort{margin-top:var(--s4);color:var(--ink-muted)}
+.anlage{list-style:none;margin:0;padding:0;display:grid}
+.anlage li{padding:var(--s2) 0;border-top:1px solid var(--linie)}.anlage li:last-child{border-bottom:1px solid var(--linie)}
+.docback a{font-weight:600}
 </style>
 
 </head>
@@ -277,8 +300,8 @@ t.addEventListener('click',function(){t.classList.toggle('offen')});})();
           <div class="dokumente">
             <span class="label">Bitte vor dem Antrag lesen</span>
             <ul>
-              <li><a href="dokumente/satzung-unser-birkenhof.pdf" target="_blank" rel="noopener">Satzung</a><span class="hinweis">PDF, 5 Seiten</span></li>
-              <li><a href="dokumente/beitragsordnung-unser-birkenhof.pdf" target="_blank" rel="noopener">Beitragsordnung</a><span class="hinweis">PDF, 3 Seiten, Juli 2026</span></li>
+              <li><a href="satzung.html">Satzung lesen</a><a class="hinweis" href="dokumente/satzung-unser-birkenhof.pdf" target="_blank" rel="noopener">PDF</a></li>
+              <li><a href="beitragsordnung.html">Beitragsordnung lesen</a><a class="hinweis" href="dokumente/beitragsordnung-unser-birkenhof.pdf" target="_blank" rel="noopener">PDF</a></li>
             </ul>
           </div>
         </div>
@@ -315,7 +338,7 @@ t.addEventListener('click',function(){t.classList.toggle('offen')});})();
   <div class="wrap">
     <span>Unser Birkenhof e.V. i. G. · www.unser-birkenhof.de</span>
     <span>Made with <span class="heart" aria-label="Liebe">♥</span> in Augsburg</span>
-    <span><a href="dokumente/satzung-unser-birkenhof.pdf" target="_blank" rel="noopener">Satzung</a> · <a href="dokumente/beitragsordnung-unser-birkenhof.pdf" target="_blank" rel="noopener">Beitragsordnung</a> · <a href="impressum.html#impressum">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
+    <span><a href="satzung.html">Satzung</a> · <a href="beitragsordnung.html">Beitragsordnung</a> · <a href="impressum.html#impressum">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
   </div>
 </footer>
 </body>
