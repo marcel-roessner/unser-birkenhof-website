@@ -60,14 +60,11 @@ nav a:hover{color:var(--laden);text-decoration:underline}
 .hero-art .traufe{fill:#1f2620;opacity:.18}
 .hero-art .schatten{fill:#1f2620;opacity:.08}
 .hero-art .boden{fill:#1f2620;opacity:.14}
-.hero-art .tor-hinweis text,.hero-art .tor-link text{font:500 12px var(--font-text);letter-spacing:.02em}
+.hero-art .tor-hinweis text{font:500 12px var(--font-text);letter-spacing:.02em}
 .hero-art .tor-hinweis text{fill:#1f2620;opacity:.55}
 .hero-art .pfeil{fill:none;stroke:#1f2620;stroke-width:1.2;opacity:.45}
-.hero-art .tor-link{opacity:0;pointer-events:none;transition:opacity .4s .5s}
-.hero-art .tor-link text{fill:var(--laden-fest);font-weight:600;text-decoration:underline}
 .hero-art .tor-hinweis{transition:opacity .3s}
 .hero-art:has(.tor:hover) .tor-hinweis,.hero-art:has(.tor.offen) .tor-hinweis{opacity:0}
-.hero-art:has(.tor:hover) .tor-link,.hero-art:has(.tor.offen) .tor-link,.hero-art .tor-link:hover,.hero-art .tor-link:focus{opacity:1;pointer-events:auto}
 .hero-art .laden{fill:var(--laden-fest)}
 .hero-art .rahmen{fill:#fbfaf5}
 .hero-art .bank{fill:#c9c4b4}
@@ -89,11 +86,23 @@ nav a:hover{color:var(--laden);text-decoration:underline}
 .hero-art .fl-r{transform-origin:right center}
 .hero-art .tor:hover .fluegel,.hero-art .tor.offen .fluegel{transform:scaleX(.1)}
 .hero-art .mensch{transform-box:fill-box;transform-origin:50% 100%}
-.hero-art .tor:hover .hopp,.hero-art .tor.offen .hopp{animation:hopp .45s ease-in-out .5s infinite alternate}
-.hero-art .tor:hover .hopp2,.hero-art .tor.offen .hopp2{animation:hopp .5s ease-in-out .7s infinite alternate}
-.hero-art .tor:hover .m2,.hero-art .tor.offen .m2{animation:wipp .9s ease-in-out .6s infinite alternate}
-.hero-art .tor:hover .m1,.hero-art .tor.offen .m1{animation:wipp .8s ease-in-out .5s infinite alternate}
-.hero-art .tor:hover .m3,.hero-art .tor.offen .m3{animation:wipp .8s ease-in-out .9s infinite alternate-reverse}
+.hero-art .jubel{opacity:0}
+.hero-art .tor:hover .unten,.hero-art .tor.offen .unten{opacity:0;transition:opacity 0s .45s}
+.hero-art .tor:hover .j1,.hero-art .tor.offen .j1{animation:winken .5s steps(1) .45s infinite}
+.hero-art .tor:hover .j2,.hero-art .tor.offen .j2{animation:winken .5s steps(1) .7s infinite}
+.hero-art .tor:hover .mensch,.hero-art .tor.offen .mensch{animation:jubelsprung .5s ease-in-out .5s infinite alternate}
+.hero-art .tor:hover .m1,.hero-art .tor.offen .m1{animation-delay:.6s}
+.hero-art .tor:hover .m2,.hero-art .tor.offen .m2{animation-delay:.75s;animation-duration:.42s}
+.hero-art .tor:hover .m3,.hero-art .tor.offen .m3{animation-delay:.55s;animation-duration:.55s}
+.hero-art .tor:hover .hopp2,.hero-art .tor.offen .hopp2{animation-delay:.68s}
+@keyframes winken{0%{opacity:1}50%{opacity:0}}
+@keyframes jubelsprung{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+.hero-art .ld{transform-box:fill-box}
+.hero-art .ld-l{transform-origin:right center}
+.hero-art .ld-r{transform-origin:left center}
+.hero-art .fenster{cursor:pointer}
+.hero-art .fenster.klapp .ld{animation:laden 2.2s cubic-bezier(.4,0,.3,1)}
+@keyframes laden{0%{transform:scaleX(1)}30%,65%{transform:scaleX(-1);filter:brightness(.82)}100%{transform:scaleX(1)}}
 
 section.block{border-top:1px solid var(--linie)}
 section.block .wrap{padding-block:var(--s6);display:grid;gap:var(--s5)}
