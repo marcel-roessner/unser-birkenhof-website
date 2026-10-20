@@ -1,0 +1,9 @@
+/* Unser Birkenhof e.V. – Farben */
+:root{
+  --putz:#f5e4b0; --putz-soft:#f9f0d6; --kalk:#f8f4e9; --kalk-raised:#fffcf6; --linie:#e2d8bf;
+  --laden:#2f6b45; --laden-soft:#dcebdc; --on-laden:#ffffff;
+  --ziegel:#6e5038; --ziegel-soft:#f8e0d3; --on-ziegel:#ffffff; /* Holzbraun */
+  --ink:#1f2620; --ink-muted:#586056;
+  --font-display:"Unbounded","Arial Black",sans-serif;
+  --font-text:"Onest","Helvetica Neue",Arial,sans-serif;
+}

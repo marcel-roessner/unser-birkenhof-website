@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Gestaltung · Unser Birkenhof</title>
+<meta name="description" content="Logo, Farben und Schriften von Unser Birkenhof e.V. zum Herunterladen – für alle, die für den Verein gestalten.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+@font-face{font-family:"Unbounded";src:url("fonts/unbounded.woff2") format("woff2");font-weight:200 900;font-display:swap}
+@font-face{font-family:"Onest";src:url("fonts/onest.woff2") format("woff2");font-weight:100 900;font-display:swap}
+:root{
+  --kalk:#f8f4e9;--kalk-raised:#fffcf6;--linie:#e2d8bf;--putz:#f5e4b0;--putz-soft:#f9f0d6;--on-putz:#1f2620;
+  --laden:#2f6b45;--laden-fest:#2f6b45;--on-laden:#ffffff;--laden-soft:#dcebdc;
+  --ziegel:#6e5038;--on-ziegel:#ffffff;--ziegel-soft:#f8e0d3;--ink:#1f2620;--ink-muted:#586056;
+  --focus:0 0 0 2px #f8f4e9,0 0 0 4px #2f6b45;
+  --font-display:"Unbounded","Arial Black",sans-serif;--font-text:"Onest","Helvetica Neue",Arial,sans-serif;
+  --s1:4px;--s2:8px;--s3:16px;--s4:24px;--s5:40px;--s6:64px;--max:1080px;
+  color-scheme:light
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--kalk);color:var(--ink);font:400 17px/1.6 var(--font-text)}
+a{color:var(--laden);text-underline-offset:3px}
+a:focus-visible{outline:none;box-shadow:var(--focus)}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--s4)}
+@media (max-width:560px){.wrap{padding-inline:var(--s3)}}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.1;letter-spacing:-.01em}
+h3{font-size:20px;line-height:1.3;font-weight:500}
+p{margin:0;max-width:62ch}
+.label{font:600 12px/16px var(--font-text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+
+/* Kopf */
+.top{position:sticky;top:0;z-index:5;background:var(--kalk);border-bottom:1px solid var(--linie)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);padding-block:var(--s3);flex-wrap:wrap}
+.brand{display:flex;align-items:flex-end;gap:12px;text-decoration:none;color:var(--ink)}
+.brand svg{color:var(--laden);flex:none}
+.wm{font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1;letter-spacing:-.01em}
+.wm i{display:block;font:normal 600 9px/1 var(--font-text);letter-spacing:.02em;margin:0 0 4px 1px}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:var(--s4);flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
+nav a:hover{color:var(--laden);text-decoration:underline}
+@media (max-width:560px){nav ul{gap:var(--s2) var(--s3)}nav a{font-size:14px}}
+
+/* Titel */
+.hero{background:var(--putz);color:var(--on-putz)}
+.hero .wrap{padding-block:var(--s6);display:grid;gap:var(--s4)}
+.hero h1{font-size:clamp(36px,7vw,72px);line-height:1;letter-spacing:-.02em}
+.hero .label{color:var(--on-putz)}
+.lead{font:500 clamp(18px,2.2vw,22px)/1.45 var(--font-text)}
+.aktionen{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+.button{display:inline-flex;align-items:center;gap:var(--s2);font:600 16px/20px var(--font-text);padding:14px var(--s4);background:var(--laden);color:var(--on-laden);text-decoration:none;border:2px solid var(--laden)}
+.button:hover{background:var(--ink);border-color:var(--ink);color:var(--kalk)}
+.button:focus-visible{outline:none;box-shadow:var(--focus)}
+.button.zwei{background:transparent;color:var(--ink);border-color:var(--ink)}
+.button.zwei:hover{background:var(--ink);color:var(--kalk)}
+.hinweis{font:400 14px/1.5 var(--font-text);color:var(--ink-muted)}
+.hero .hinweis{color:var(--on-putz)}
+.inhalt{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);font-size:15px}
+.inhalt a{color:var(--on-putz);font-weight:600}
+
+section.block{border-top:1px solid var(--linie);scroll-margin-top:72px}
+section.block > .wrap{padding-block:var(--s6);display:grid;gap:var(--s5)}
+.head{display:grid;gap:var(--s3)}
+.nr{font-family:var(--font-display);color:var(--laden);margin-right:10px}
+
+/* Regeln */
+.regeln{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s4)}
+.regel{border-top:1px solid var(--ink);padding-top:var(--s3);display:grid;gap:var(--s2);align-content:start}
+.regel h3{font-size:17px;font-family:var(--font-text);font-weight:600}
+.regel p{font-size:16px;line-height:1.55}
+ul.punkte{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:16px;line-height:1.5}
+ul.nein{list-style:none;padding:0}
+ul.nein li::before{content:"✕";color:var(--ziegel);font-weight:700;margin-right:10px}
+ul.ja{list-style:none;padding:0}
+ul.ja li::before{content:"✓";color:var(--laden);font-weight:700;margin-right:10px}
+
+/* Logos */
+.logos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5) var(--s4)}
+@media (max-width:760px){.logos{grid-template-columns:1fr}}
+.logo-karte{display:grid;gap:var(--s3);align-content:start;min-width:0}
+.buehne{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--linie)}
+.buehne div{aspect-ratio:1/1;display:grid;place-items:center;padding:14%}
+.buehne img{width:100%;height:auto;max-height:100%;display:block}
+.buehne .b1{background:var(--putz)}.buehne .b2{background:var(--kalk-raised)}.buehne .b3{background:var(--laden-fest)}
+.logo-karte h3{font-size:18px}
+.logo-karte p{font-size:15px;line-height:1.5;color:var(--ink-muted)}
+.dl{list-style:none;margin:0;padding:0;display:grid;font-size:15px}
+.dl li{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);padding:var(--s2) 0;border-top:1px solid var(--linie)}
+.dl li:last-child{border-bottom:1px solid var(--linie)}
+.dl span{display:flex;align-items:center;gap:10px}
+.dl .farbe{width:12px;height:12px;flex:none;border:1px solid rgba(31,38,32,.25)}
+.dl a{font-weight:600;white-space:nowrap}
+.dl a + a{margin-left:12px}
+
+.schutz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s5);align-items:center}
+@media (max-width:760px){.schutz{grid-template-columns:1fr}}
+.schutz figure{margin:0;background:var(--putz);padding:var(--s5);display:grid;place-items:center}
+.schutz figure div{outline:2px dashed rgba(31,38,32,.45);outline-offset:0;padding:14px;max-width:100%}
+.schutz figure img{display:block;width:320px;max-width:100%;height:auto}
+.schutz figcaption{font-size:13px;margin-top:var(--s2);color:var(--on-putz)}
+
+/* Farben */
+.farben{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s4)}
+.farbe-k{display:grid;gap:var(--s2);align-content:start;min-width:0}
+.feld{height:120px;display:flex;align-items:flex-end;padding:var(--s3);font:600 14px/1 var(--font-text);border:1px solid rgba(31,38,32,.08)}
+.farbe-k.klein .feld{height:72px}
+.farben.hell{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:900px){.farben.hell{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}}
+.farbe-k h3{font:600 17px/1.3 var(--font-text)}
+.farbe-k p{font-size:15px;line-height:1.5;color:var(--ink-muted)}
+.werte{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px var(--s3);font-size:14px;font-variant-numeric:tabular-nums}
+.werte dt{font:600 11px/22px var(--font-text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+.werte dd{margin:0;line-height:22px;display:flex;gap:8px;align-items:center}
+.kopie{font:500 12px/1 var(--font-text);background:none;border:1px solid var(--linie);color:var(--ink-muted);padding:3px 6px;cursor:pointer}
+.kopie:hover{border-color:var(--ink);color:var(--ink)}
+.kopie:focus-visible{outline:none;box-shadow:var(--focus)}
+.anteil{display:flex;height:56px;border:1px solid var(--linie)}
+.anteil div{display:flex;align-items:flex-end;padding:8px 10px;font:600 12px/1.2 var(--font-text)}
+.paare{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s2)}
+.paar{padding:var(--s3);display:grid;gap:4px;font-size:14px}
+.paar strong{font:600 22px/1.1 var(--font-display)}
+
+/* Schriften */
+.schriften{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--s5)}
+.schrift{display:grid;gap:var(--s3);align-content:start;min-width:0}
+.probe{background:var(--kalk-raised);border:1px solid var(--linie);padding:var(--s4);display:grid;gap:var(--s2);overflow:hidden}
+.probe .gross{font-size:clamp(40px,6vw,64px);line-height:1;letter-spacing:-.02em}
+.probe .abc{font-size:18px;line-height:1.5;word-break:break-all}
+.f-display{font-family:var(--font-display);font-weight:600}
+.f-text{font-family:var(--font-text)}
+.hierarchie{display:grid;border-top:1px solid var(--ink)}
+.hierarchie > div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:var(--s4);padding:var(--s3) 0;border-bottom:1px solid var(--linie);align-items:baseline}
+@media (max-width:640px){.hierarchie > div{grid-template-columns:1fr;gap:var(--s1)}}
+.hierarchie .meta{font-size:13px;color:var(--ink-muted);line-height:1.4}
+.hierarchie .meta b{display:block;color:var(--ink);font-size:14px}
+.anleitung{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s4)}
+.anleitung > div{background:var(--kalk-raised);border:1px solid var(--linie);padding:var(--s4);display:grid;gap:var(--s2);align-content:start}
+.anleitung h3{font:600 16px/1.3 var(--font-text)}
+.anleitung ol{margin:0;padding-left:1.2em;font-size:15px;line-height:1.55;display:grid;gap:4px}
+
+/* Fünf Regeln */
+.kurz{background:var(--kalk-raised)}
+.fuenf{margin:0;padding:0;list-style:none;counter-reset:r;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--s4)}
+@media (max-width:900px){.fuenf{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}}
+.fuenf li{counter-increment:r;display:grid;gap:6px;align-content:start;border-top:1px solid var(--ink);padding-top:var(--s3);font-size:16px;line-height:1.5}
+.fuenf li::before{content:counter(r);font:600 32px/1 var(--font-display);color:var(--laden)}
+.fuenf b{font-size:17px}
+
+/* Welche Datei */
+.welche{background:var(--putz-soft);padding:var(--s4);display:grid;gap:var(--s3)}
+.welche h3{font-size:18px}
+.welche dl{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 var(--s5)}
+.welche dl div{display:flex;justify-content:space-between;gap:var(--s3);padding:10px 0;border-bottom:1px solid var(--linie);font-size:16px}
+.welche dd{margin:0;font-weight:600;color:var(--laden);white-space:nowrap}
+.welche dd::before{content:"→ ";color:var(--ink-muted);font-weight:400}
+
+/* Töne */
+.toene{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.toene li{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.toene i{width:22px;height:22px;border:1px solid rgba(31,38,32,.15);flex:none}
+.toene code{font:500 13px/1 var(--font-text);color:var(--ink-muted)}
+.dl small{color:var(--ink-muted);font-size:13px}
+
+/* Fensterband: Fenster wie auf der Startseite */
+.fensterband{height:40px;background:var(--putz) url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDAgODAiIHdpZHRoPSIxNDAiIGhlaWdodD0iODAiPjxkZWZzPjxwYXR0ZXJuIGlkPSJsIiB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSIxLjYiIGZpbGw9IiMxZjRhMzAiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxNDAiIGhlaWdodD0iODAiIGZpbGw9IiNmNWU0YjAiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOCAxMCkiPjxyZWN0IGZpbGw9IiMxZjI2MjAiIG9wYWNpdHk9Ii4wOCIgeD0iMCIgeT0iMiIgd2lkdGg9Ijg0IiBoZWlnaHQ9IjU4Ii8+PHJlY3QgZmlsbD0iI2ZiZmFmNSIgeD0iMjEiIHk9IjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI1NiIvPjxyZWN0IGZpbGw9IiMzZTRiNGYiIHg9IjI0IiB5PSIzIiB3aWR0aD0iMzQiIGhlaWdodD0iNTAiLz48cGF0aCBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuMSIgZD0iTTI0IDMwLjUgTDQyLjcgMyBMNDkuNSAzIEwyNCA0MyBaIi8+PHJlY3QgZmlsbD0iI2ZiZmFmNSIgeD0iMzkuNSIgeT0iMyIgd2lkdGg9IjMiIGhlaWdodD0iNTAiLz48cmVjdCBmaWxsPSIjZmJmYWY1IiB4PSIyNCIgeT0iMjMiIHdpZHRoPSIzNCIgaGVpZ2h0PSIzIi8+PHJlY3QgZmlsbD0iI2ZiZmFmNSIgeD0iMjQiIHk9IjM4LjUiIHdpZHRoPSIzNCIgaGVpZ2h0PSIyIi8+PHJlY3QgZmlsbD0iI2M5YzRiNCIgeD0iMTkiIHk9IjU2IiB3aWR0aD0iNDQiIGhlaWdodD0iMyIvPjxyZWN0IGZpbGw9IiMyZjZiNDUiIHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI1NiIvPjxyZWN0IGZpbGw9InVybCgjbCkiIHg9IjMiIHk9IjMiIHdpZHRoPSIxNCIgaGVpZ2h0PSI1MCIvPjxyZWN0IGZpbGw9IiMyZjZiNDUiIHg9IjYyIiB5PSIwIiB3aWR0aD0iMjAiIGhlaWdodD0iNTYiLz48cmVjdCBmaWxsPSJ1cmwoI2wpIiB4PSI2NSIgeT0iMyIgd2lkdGg9IjE0IiBoZWlnaHQ9IjUwIi8+PC9nPjwvc3ZnPg==") 0 0/70px 40px repeat-x;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.fensterband.gross{height:80px;background-size:140px 80px}
+
+/* Vorlagen */
+.vorlagen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5) var(--s4)}
+@media (max-width:900px){.vorlagen{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.vorlagen{grid-template-columns:1fr}}
+.vorlage{margin:0;display:grid;gap:var(--s3);align-content:start;min-width:0}
+.vorlage figcaption{font-size:15px;line-height:1.5;color:var(--ink-muted)}
+.vorlage figcaption b{display:block;color:var(--ink);font-size:17px;margin-bottom:2px}
+.vorlage > div{aspect-ratio:1/1.2;background:var(--kalk-raised);border:1px solid var(--linie);overflow:hidden}
+.etikett{display:inline-flex;align-items:center;gap:8px;justify-self:start;align-self:start;font:600 11px/16px var(--font-text);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;background:var(--putz-soft);color:var(--ink)}
+.etikett::before{content:"";width:8px;height:8px;background:currentColor}
+.e-hof{background:var(--laden-soft);color:var(--laden)}.e-hof::before{border-radius:50%}
+.e-haus{background:var(--ziegel-soft);color:var(--ziegel)}.e-haus::before{transform:rotate(45deg)}
+.e-hell{background:rgba(248,244,233,.16);color:#f8f4e9}.e-hell::before{transform:rotate(45deg)}
+
+.vorlage .flyer{background:var(--putz);color:var(--on-putz);display:flex;flex-direction:column;border:0}
+.fl-kopf{display:flex;justify-content:space-between;align-items:flex-start;padding:8% 8% 0}
+.fl-kopf .label{color:var(--on-putz);font-size:10px}
+.fl-kopf img{width:15%}
+.fl-mitte{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:0 8%}
+.fl-mitte h4{margin:0;font:600 clamp(34px,4vw,48px)/1 var(--font-display);letter-spacing:-.02em}
+.fl-mitte p{font-size:13px;line-height:1.45;max-width:26ch}
+.vorlage dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font-size:13px}
+.vorlage dt{font:600 10px/20px var(--font-text);letter-spacing:.08em;text-transform:uppercase;color:inherit;opacity:.75}
+.vorlage dd{margin:0;line-height:20px;font-weight:500}
+.fl-fuss{display:flex;justify-content:space-between;align-items:center;padding:4% 8% 6%;font:600 11px/1 var(--font-text)}
+.fl-fuss img{width:42%}
+
+.vorlage .posts{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;align-content:center;background:var(--kalk)}
+.post{aspect-ratio:4/5;display:flex;flex-direction:column;overflow:hidden}
+.post.p1{background:var(--putz);color:var(--on-putz)}.post.p2{background:var(--laden-fest);color:#f8f4e9}
+.po-kopf{display:flex;justify-content:space-between;align-items:flex-start;padding:10px}
+.po-kopf img{width:20%}.po-kopf .etikett{font-size:8px;padding:3px 5px;gap:5px}.po-kopf .etikett::before{width:6px;height:6px}
+.po-text{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;padding:0 10px 10px}
+.po-text h4{margin:0;font:600 clamp(14px,1.6vw,18px)/1.1 var(--font-display)}
+.po-text p{font-size:10px;line-height:1.35}
+.zahl{font:600 clamp(40px,5vw,56px)/1 var(--font-display);letter-spacing:-.03em}
+.post .fensterband{height:20px;background-size:35px 20px}
+
+.vorlage .aushang{background:var(--kalk);display:grid;align-content:center;padding:8%;gap:12px;border-top:8px solid var(--ziegel)}
+.aushang h4{margin:0;font:500 20px/1.25 var(--font-display)}
+.aushang p{font-size:14px;line-height:1.5}
+
+.vorlage .karten{display:grid;align-content:center;gap:12px;padding:8%;background:var(--kalk)}
+.vk{aspect-ratio:85/55;position:relative}
+.vk.vorn{background:var(--laden-fest);display:grid;place-items:center}.vk.vorn img{width:24%}
+.vk.hinten{background:var(--putz);color:var(--on-putz);padding:6%;display:flex;flex-direction:column;justify-content:space-between}
+.vk.hinten img{position:absolute;right:6%;top:9%;width:10%}
+.vk.hinten b{display:block;font:600 14px/1.2 var(--font-display)}
+.vk.hinten .label{color:var(--on-putz);font-size:9px}
+.vk.hinten small{font-size:9.5px;line-height:1.4}
+
+.vorlage .brief{background:var(--kalk);padding:6% 12%;display:grid}
+.brief > *{min-width:0}
+.vorlage .brief{position:relative}
+.brief{--p:#fffcf6}
+.vorlage .brief::before{content:"";position:absolute;inset:5% 12%;background:#fffcf6;box-shadow:0 0 0 1px var(--linie)}
+.brief > div{position:relative}
+.br-kopf{display:flex;justify-content:space-between;align-items:center;padding:7% 8% 0}
+.br-kopf img:first-child{width:38%}.br-kopf img:last-child{width:9%}
+.br-abs{font-size:6px;color:var(--ink-muted);padding:7% 8% 0}
+.br-an{font-size:8px;line-height:1.4;padding:2% 8% 0}
+.br-text{display:grid;gap:5px;padding:9% 8% 0}
+.br-text b{font:500 9px/1.2 var(--font-display);margin-bottom:3px}
+.br-text span{height:4px;background:var(--linie)}.br-text span.k{width:60%}
+.br-fuss{position:absolute!important;left:12%;right:12%;bottom:5%}
+.br-fuss .fensterband{height:14px;background-size:24.5px 14px}
+.br-zeile{display:flex;justify-content:space-between;gap:6px;padding:4% 8% 5%;font-size:5.5px;line-height:1.4;color:var(--ink-muted);background:#fffcf6}
+
+.vorlage .bausteine{display:grid;align-content:center;gap:var(--s4);padding:8%;background:var(--kalk)}
+.bs-zeile{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;font:600 14px/18px var(--font-text);padding:10px 16px;background:var(--laden);color:#fff;border:2px solid var(--laden)}
+.btn-2{background:transparent;color:var(--laden)}
+.bs-fenster{width:48%}
+
+.fb-regel{display:grid;gap:var(--s3)}
+.fb-regel .regel{border-top:0;padding-top:0}
+.links{display:flex;flex-wrap:wrap;gap:6px 20px}
+.links a{font-weight:600}
+
+.paket{background:var(--laden-fest);color:#f8f4e9;border-top:0}
+.paket h2,.paket .label{color:#f8f4e9}
+.paket .label{opacity:.85}
+.paket ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.paket .button{background:#f8f4e9;color:var(--ink);border-color:#f8f4e9}
+.paket .button:hover{background:var(--ink);border-color:var(--ink);color:#f8f4e9}
+.paket .button.zwei{background:transparent;color:#f8f4e9;border-color:#f8f4e9}
+.paket a:not(.button){color:#f8f4e9}
+.paket a:focus-visible{box-shadow:0 0 0 2px var(--laden-fest),0 0 0 4px #f8f4e9}
+.paket ul.dl{padding:0}
+.paket .dl li{border-color:rgba(248,244,233,.3);flex-wrap:wrap}
+.paket .dl span{flex-wrap:wrap;gap:4px 14px}
+.paket .dl a + a{margin-left:0}
+.paket-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:var(--s5)}
+@media (max-width:760px){.paket .dl li{border-color:rgba(248,244,233,.3);flex-wrap:wrap}
+.paket .dl span{flex-wrap:wrap;gap:4px 14px}
+.paket .dl a + a{margin-left:0}
+.paket-grid{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--linie);color:var(--ink-muted)}
+footer .wrap{padding-block:var(--s4);display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;font-size:14px}
+footer a{color:var(--ink-muted)}
+.heart{color:#8e1f2f}
+
+/* Druck / PDF */
+@page{size:A4;margin:14mm 14mm 16mm}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-size:11pt;background:#fff}
+  .top,.nur-web,.kopie,footer{display:none!important}
+  .wrap{max-width:none;padding-inline:0}
+  .hero .wrap{padding:28mm 12mm 18mm}
+  section.block{break-before:page;border-top:0}
+  section.block > .wrap{padding-block:0 8mm;gap:8mm}
+  .logo-karte,.farbe-k,.schrift,.regel,.anleitung > div,.beispiele > *,.hierarchie > div,.schutz{break-inside:avoid}
+  .paket{display:none}
+  a{color:inherit;text-decoration:none}
+  .nur-druck{display:block!important}
+  body{font-size:10pt}
+  .hero{min-height:265mm;display:flex;align-items:flex-end}
+  .hero .wrap{padding:0 12mm 20mm;width:100%}
+  .hero h1{font-size:44pt}
+  h2{font-size:24pt}
+  .logos{grid-template-columns:1fr 1fr!important;gap:6mm}
+  .logo-karte p,.dl{font-size:9pt}
+  .dl li{padding:3px 0}
+  .farben{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4mm}
+  .farben.hell{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+  .feld{height:70px}.farbe-k.klein .feld{height:44px}
+  .farbe-k p{font-size:9pt}.werte{font-size:9pt}
+  .regeln{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5mm}
+  .regel p,ul.punkte{font-size:9.5pt}
+  .schutz{grid-template-columns:1fr 1fr!important}
+  .schriften{grid-template-columns:1fr 1fr!important;gap:6mm}
+  .probe .gross{font-size:32pt}.probe .abc{font-size:10pt}
+  .hierarchie > div{grid-template-columns:150px 1fr!important;padding:6px 0}
+  .anleitung{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:3mm}
+  .anleitung > div{padding:4mm}.anleitung ol{font-size:8.5pt}
+  .vorlagen{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5mm}
+  .vorlage,.fuenf li,.welche{break-inside:avoid}
+  .fl-mitte h4{font-size:24pt}.aushang h4{font-size:12pt}.aushang p{font-size:8pt}
+  .vorlage figcaption{font-size:8.5pt}
+  .fuenf{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+  .welche dl{grid-template-columns:1fr 1fr!important}
+  .kurz{break-before:auto!important}
+  #logo{break-before:auto!important}
+  .fb-regel{break-inside:avoid}
+  #text{break-before:auto!important;margin-top:10mm}
+  .links{display:none!important}
+  .paket{display:none}
+}
+.nur-druck{display:none}
+@media print{.cover-logo{width:70mm;margin-bottom:60mm}.werte{grid-template-columns:auto 1fr;gap:0 6px}.farben.hell .werte dd{white-space:nowrap;font-size:8pt}}
+.anleitung p{font-size:15px;line-height:1.5}@media print{.anleitung p{font-size:9pt}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Unser Birkenhof, zur Startseite">
+      <svg viewBox="0 0 64 64" width="36" height="36" aria-hidden="true"><mask id="bm"><rect width="64" height="64" fill="#fff"/><rect x="14" y="14" width="36" height="36" fill="#000"/><rect x="26" y="49" width="12" height="16" fill="#000"/><rect x="26" y="-1" width="12" height="16" fill="#000"/><circle cx="32" cy="32" r="8" fill="#fff"/></mask><rect width="64" height="64" fill="currentColor" mask="url(#bm)"/></svg>
+      <span class="wm"><i>unser</i>birkenhof</span>
+    </a>
+    <nav aria-label="Abschnitte">
+      <ul>
+        <li><a href="#logo">Logo</a></li>
+        <li><a href="#farben">Farben</a></li>
+        <li><a href="#schriften">Schriften</a></li>
+        <li><a href="#vorlagen">Vorlagen</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <img class="nur-druck cover-logo" src="design/logos/svg/birkenhof-logo-gestapelt-laden.svg" alt="">
+    <span class="label">Für alle, die für den Verein etwas gestalten</span>
+    <h1>So sieht unser Birkenhof aus</h1>
+    <p class="lead">Du machst einen Flyer, einen Aushang oder einen Post? Hier findest du Logo, Farben und Schriften. Lies die fünf Regeln, lade die Dateien, fertig.</p>
+    <div class="aktionen nur-web">
+      <a class="button" href="#logo">Logo herunterladen</a>
+      <a class="button zwei" href="design/birkenhof-design-guide.pdf" download>Alles als PDF</a>
+    </div>
+    <p class="hinweis nur-druck">Dateien zum Herunterladen: unser-birkenhof.de/design.html · Fragen: hallo@unser-birkenhof.de</p>
+  </div>
+</div>
+
+<section class="block kurz" id="kurz">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">Keine Zeit? Das reicht</span>
+      <h2>Fünf Regeln</h2>
+    </div>
+    <ol class="fuenf">
+      <li><b>Logo immer als Datei.</b> Nie abtippen, nie nachbauen, nie verzerren.</li>
+      <li><b>Nur unsere Farben.</b> Viel Gelb, etwas Grün, Braun nur für Wichtiges.</li>
+      <li><b>Zwei Schriften.</b> Titel in Unbounded, alles andere in Onest.</li>
+      <li><b>Kurz und per Du.</b> Was, wann, wo, was mitbringen.</li>
+      <li><b>Echte Fotos.</b> Vom Haus und von uns, nur mit Einverständnis.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="block" id="logo">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">1 · Logo</span>
+      <h2>Das Logo</h2>
+      <p>Das Zeichen zeigt den Birkenhof von oben: das Haus, den Hof und in der Mitte den Baum.</p>
+    </div>
+
+    <div class="welche">
+      <h3>Welche Datei brauche ich?</h3>
+      <dl>
+        <div><dt>Word, PowerPoint, E-Mail, WhatsApp</dt><dd>PNG</dd></div>
+        <div><dt>Canva, Druckerei, Grafikprogramm</dt><dd>SVG</dd></div>
+        <div><dt>Auf gelbem oder weißem Grund</dt><dd>Grün</dd></div>
+        <div><dt>Für Schwarz-Weiß-Kopien</dt><dd>Schwarz</dd></div>
+        <div><dt>Auf grünem oder dunklem Grund</dt><dd>Hell</dd></div>
+      </dl>
+    </div>
+
+    <div class="logos">
+      <div class="logo-karte">
+        <div class="buehne" aria-hidden="true"><div class="b1"><img src="design/logos/svg/birkenhof-logo-laden.svg" alt=""></div><div class="b2"><img src="design/logos/svg/birkenhof-logo.svg" alt=""></div><div class="b3"><img src="design/logos/svg/birkenhof-logo-hell.svg" alt=""></div></div>
+        <h3>Logo quer · Standard</h3>
+        <p>Für fast alles: Flyer, Briefe, Website, Mail.</p>
+        <ul class="dl">
+          <li><span><i class="farbe" style="background:#2f6b45"></i>Grün</span><span><a href="design/logos/png/birkenhof-logo-laden.png" download>PNG</a><a href="design/logos/svg/birkenhof-logo-laden.svg" download>SVG</a></span></li>
+          <li><span><i class="farbe" style="background:#1f2620"></i>Schwarz</span><span><a href="design/logos/png/birkenhof-logo.png" download>PNG</a><a href="design/logos/svg/birkenhof-logo.svg" download>SVG</a></span></li>
+          <li><span><i class="farbe" style="background:#f8f4e9"></i>Hell</span><span><a href="design/logos/png/birkenhof-logo-hell.png" download>PNG</a><a href="design/logos/svg/birkenhof-logo-hell.svg" download>SVG</a></span></li>
+        </ul>
+      </div>
+      <div class="logo-karte">
+        <div class="buehne" aria-hidden="true"><div class="b1"><img src="design/logos/svg/birkenhof-logo-gestapelt-laden.svg" alt=""></div><div class="b2"><img src="design/logos/svg/birkenhof-logo-gestapelt.svg" alt=""></div><div class="b3"><img src="design/logos/svg/birkenhof-logo-gestapelt-hell.svg" alt=""></div></div>
+        <h3>Logo gestapelt</h3>
+        <p>Für Quadrate und Hochformate: Plakat, Post, Banner.</p>
+        <ul class="dl">
+          <li><span><i class="farbe" style="background:#2f6b45"></i>Grün</span><span><a href="design/logos/png/birkenhof-logo-gestapelt-laden.png" download>PNG</a><a href="design/logos/svg/birkenhof-logo-gestapelt-laden.svg" download>SVG</a></span></li>
+          <li><span><i class="farbe" style="background:#1f2620"></i>Schwarz</span><span><a href="design/logos/png/birkenhof-logo-gestapelt.png" download>PNG</a><a href="design/logos/svg/birkenhof-logo-gestapelt.svg" download>SVG</a></span></li>
+          <li><span><i class="farbe" style="background:#f8f4e9"></i>Hell</span><span><a href="design/logos/png/birkenhof-logo-gestapelt-hell.png" download>PNG</a><a href="design/logos/svg/birkenhof-logo-gestapelt-hell.svg" download>SVG</a></span></li>
+        </ul>
+      </div>
+      <div class="logo-karte">
+        <div class="buehne" aria-hidden="true"><div class="b1"><img src="design/logos/svg/birkenhof-zeichen-laden.svg" alt=""></div><div class="b2"><img src="design/logos/svg/birkenhof-zeichen.svg" alt=""></div><div class="b3"><img src="design/logos/svg/birkenhof-zeichen-hell.svg" alt=""></div></div>
+        <h3>Nur das Zeichen</h3>
+        <p>Für Profilbild, Stempel, Aufkleber.</p>
+        <ul class="dl">
+          <li><span><i class="farbe" style="background:#2f6b45"></i>Grün</span><span><a href="design/logos/png/birkenhof-zeichen-laden.png" download>PNG</a><a href="design/logos/svg/birkenhof-zeichen-laden.svg" download>SVG</a></span></li>
+          <li><span><i class="farbe" style="background:#1f2620"></i>Schwarz</span><span><a href="design/logos/png/birkenhof-zeichen.png" download>PNG</a><a href="design/logos/svg/birkenhof-zeichen.svg" download>SVG</a></span></li>
+          <li><span><i class="farbe" style="background:#f8f4e9"></i>Hell</span><span><a href="design/logos/png/birkenhof-zeichen-hell.png" download>PNG</a><a href="design/logos/svg/birkenhof-zeichen-hell.svg" download>SVG</a></span></li>
+          <li><span><i class="farbe" style="background:#f5e4b0"></i>Fertiges Profilbild</span><span><a href="design/logos/png/profilbild-putz.png" download>Gelb</a><a href="design/logos/png/profilbild-laden.png" download>Grün</a></span></li>
+        </ul>
+      </div>
+      <div class="logo-karte">
+        <div class="buehne" aria-hidden="true"><div class="b1"><img src="design/logos/svg/birkenhof-wortmarke-laden.svg" alt=""></div><div class="b2"><img src="design/logos/svg/birkenhof-wortmarke.svg" alt=""></div><div class="b3"><img src="design/logos/svg/birkenhof-wortmarke-hell.svg" alt=""></div></div>
+        <h3>Nur die Schrift</h3>
+        <p>Selten nötig. Nur wenn das Zeichen schon woanders steht.</p>
+        <ul class="dl">
+          <li><span><i class="farbe" style="background:#2f6b45"></i>Grün</span><span><a href="design/logos/png/birkenhof-wortmarke-laden.png" download>PNG</a><a href="design/logos/svg/birkenhof-wortmarke-laden.svg" download>SVG</a></span></li>
+          <li><span><i class="farbe" style="background:#1f2620"></i>Schwarz</span><span><a href="design/logos/png/birkenhof-wortmarke.png" download>PNG</a><a href="design/logos/svg/birkenhof-wortmarke.svg" download>SVG</a></span></li>
+          <li><span><i class="farbe" style="background:#f8f4e9"></i>Hell</span><span><a href="design/logos/png/birkenhof-wortmarke-hell.png" download>PNG</a><a href="design/logos/svg/birkenhof-wortmarke-hell.svg" download>SVG</a></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="schutz">
+      <figure>
+        <div><img src="design/logos/svg/birkenhof-logo-laden.svg" alt="Logo mit gestrichelt markiertem Freiraum rundherum"></div>
+        <figcaption>Gestrichelt: hier bleibt es frei</figcaption>
+      </figure>
+      <div class="regel" style="border-top:0;padding-top:0">
+        <h3>Richtig</h3>
+        <ul class="punkte ja">
+          <li>Rundherum etwas Platz lassen</li>
+          <li>Mindestens 35 mm breit (am Bildschirm 120 Pixel)</li>
+        </ul>
+        <h3 style="margin-top:var(--s3)">Bitte nicht</h3>
+        <ul class="punkte nein">
+          <li>verzerren oder drehen</li>
+          <li>umfärben, Schatten oder Rahmen dazu</li>
+          <li>auf ein unruhiges Foto legen</li>
+          <li>mit einer anderen Schrift nachschreiben</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="farben">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">2 · Farben</span>
+      <h2>Unsere Farben</h2>
+      <p>Die Farben kommen vom Haus: gelber Putz, grüne Läden, braunes Tor. Den Farbcode kopierst du mit einem Klick.</p>
+    </div>
+
+    <div class="farben">
+      <div class="farbe-k">
+        <div class="feld" style="background:#f5e4b0;color:#1f2620">viel</div>
+        <h3>Putzgelb</h3>
+        <p>Hintergrund für Flyer, Plakate, Posts.</p>
+        <dl class="werte"><dt>HEX</dt><dd>#F5E4B0 <button class="kopie" data-v="#F5E4B0">kopieren</button></dd><dt>RGB</dt><dd>245 228 176</dd><dt>CMYK</dt><dd>5 9 39 0</dd></dl>
+      </div>
+      <div class="farbe-k">
+        <div class="feld" style="background:#2f6b45;color:#fff">etwas</div>
+        <h3>Ladengrün</h3>
+        <p>Logo, Buttons, Hervorhebungen.</p>
+        <dl class="werte"><dt>HEX</dt><dd>#2F6B45 <button class="kopie" data-v="#2F6B45">kopieren</button></dd><dt>RGB</dt><dd>47 107 69</dd><dt>CMYK</dt><dd>84 30 85 33</dd></dl>
+      </div>
+      <div class="farbe-k">
+        <div class="feld" style="background:#6e5038;color:#fff">selten</div>
+        <h3>Holzbraun</h3>
+        <p>Nur für Wichtiges: Reparaturen, Hinweise.</p>
+        <dl class="werte"><dt>HEX</dt><dd>#6E5038 <button class="kopie" data-v="#6E5038">kopieren</button></dd><dt>RGB</dt><dd>110 80 56</dd><dt>CMYK</dt><dd>48 62 83 42</dd></dl>
+      </div>
+      <div class="farbe-k">
+        <div class="feld" style="background:#1f2620;color:#f8f4e9">Text</div>
+        <h3>Schwarzgrün</h3>
+        <p>Für Texte, statt reinem Schwarz.</p>
+        <dl class="werte"><dt>HEX</dt><dd>#1F2620 <button class="kopie" data-v="#1F2620">kopieren</button></dd><dt>RGB</dt><dd>31 38 32</dd><dt>CMYK</dt><dd>75 53 70 93</dd></dl>
+      </div>
+    </div>
+
+    <div class="regeln">
+      <div class="regel">
+        <h3>So ist es gut lesbar</h3>
+        <div class="paare">
+          <div class="paar" style="background:#f5e4b0;color:#1f2620"><strong>Aa</strong>Dunkel auf Gelb</div>
+          <div class="paar" style="background:#2f6b45;color:#fff"><strong>Aa</strong>Weiß auf Grün</div>
+          <div class="paar" style="background:#6e5038;color:#fff"><strong>Aa</strong>Weiß auf Braun</div>
+          <div class="paar" style="background:#f8f4e9;color:#2f6b45"><strong>Aa</strong>Grün auf Hell</div>
+        </div>
+      </div>
+      <div class="regel">
+        <h3>Helle Töne für Flächen</h3>
+        <ul class="toene">
+          <li><i style="background:#f8f4e9"></i>Kalkweiß <code>#F8F4E9</code></li>
+          <li><i style="background:#f9f0d6"></i>Gelb hell <code>#F9F0D6</code></li>
+          <li><i style="background:#dcebdc"></i>Grün hell <code>#DCEBDC</code></li>
+          <li><i style="background:#f8e0d3"></i>Braun hell <code>#F8E0D3</code></li>
+          <li><i style="background:#586056"></i>Grau für Nebentext <code>#586056</code></li>
+        </ul>
+      </div>
+      <div class="regel">
+        <h3>Für die Druckerei</h3>
+        <p>Schick die CMYK-Werte mit. Bei großen Auflagen vorher einen Probedruck ansehen.</p>
+        <p><a href="design/farben/birkenhof-farben.txt" download>Alle Farbwerte als Liste</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="schriften">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">3 · Schriften</span>
+      <h2>Zwei Schriften</h2>
+      <p>Beide sind kostenlos. Einmal installieren, dann findest du sie in Word, PowerPoint und Co.</p>
+    </div>
+
+    <div class="schriften">
+      <div class="schrift">
+        <div class="probe f-display">
+          <span class="label">Für Titel</span>
+          <span class="gross">Hoffest</span>
+        </div>
+        <h3>Unbounded</h3>
+        <p>Nur für Überschriften, höchstens sechs Wörter.</p>
+        <ul class="dl">
+          <li><span>Unbounded SemiBold <small>· Titel</small></span><a href="design/schriften/Unbounded-SemiBold.ttf" download>Laden</a></li>
+          <li><span>Unbounded Medium <small>· Zwischentitel</small></span><a href="design/schriften/Unbounded-Medium.ttf" download>Laden</a></li>
+          <li><span>Weitere Stärken</span><span><a href="design/schriften/Unbounded-Regular.ttf" download>Regular</a><a href="design/schriften/Unbounded-Bold.ttf" download>Bold</a></span></li>
+        </ul>
+      </div>
+      <div class="schrift">
+        <div class="probe f-text">
+          <span class="label">Für Text</span>
+          <span class="gross" style="font-weight:600;letter-spacing:-.01em">Komm vorbei</span>
+        </div>
+        <h3>Onest</h3>
+        <p>Für alles andere: Text, Datum, Ort, Kleingedrucktes.</p>
+        <ul class="dl">
+          <li><span>Onest Regular <small>· Text</small></span><a href="design/schriften/Onest-Regular.ttf" download>Laden</a></li>
+          <li><span>Onest SemiBold <small>· fett</small></span><a href="design/schriften/Onest-SemiBold.ttf" download>Laden</a></li>
+          <li><span>Weitere Stärken</span><span><a href="design/schriften/Onest-Medium.ttf" download>Medium</a><a href="design/schriften/Onest-Bold.ttf" download>Bold</a></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="anleitung">
+      <div><h3>Windows</h3><p>Rechtsklick auf die Datei › „Installieren“. Programm neu starten.</p></div>
+      <div><h3>Mac</h3><p>Doppelklick auf die Datei › „Installieren“. Programm neu starten.</p></div>
+      <div><h3>Canva</h3><p>„Unbounded“ oder „Onest“ in die Schriftsuche eingeben.</p></div>
+      <div><h3>Klappt nicht?</h3><p>Dann Arial Black für Titel und Arial für Text.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="vorlagen">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">4 · Vorlagen</span>
+      <h2>So sieht es fertig aus</h2>
+      <p>Nimm diese Beispiele als Vorbild: linksbündig, viel Platz, eckige Formen.</p>
+    </div>
+
+    <div class="vorlagen">
+      <figure class="vorlage">
+        <div class="flyer" aria-hidden="true">
+          <div class="fl-kopf"><span class="label">Unser Birkenhof lädt ein</span><img src="design/logos/svg/birkenhof-zeichen-laden.svg" alt=""></div>
+          <div class="fl-mitte">
+            <h4>Hoffest</h4>
+            <p>Musik im Innenhof, Kuchen aus allen Küchen und Führungen durchs Haus.</p>
+            <dl><dt>Wann</dt><dd>Sa 12.6., ab 15 Uhr</dd><dt>Wo</dt><dd>Innenhof</dd></dl>
+          </div>
+          <div class="fensterband"></div>
+          <div class="fl-fuss"><img src="design/logos/svg/birkenhof-wortmarke.svg" alt=""><span>unser-birkenhof.de</span></div>
+        </div>
+        <figcaption><b>Flyer und Plakat</b>Gelber Grund, großer Titel, Wann und Wo, unten das Fensterband.</figcaption>
+      </figure>
+
+      <figure class="vorlage">
+        <div class="posts" aria-hidden="true">
+          <div class="post p1"><div class="po-kopf"><span class="etikett">Begegnung</span><img src="design/logos/svg/birkenhof-zeichen-laden.svg" alt=""></div><div class="po-text"><h4>Hofkino unter der Birke</h4><p>Fr 18.9., 20:30 Uhr</p></div><div class="fensterband"></div></div>
+          <div class="post p2"><div class="po-kopf"><span class="etikett e-hell">Haus</span><img src="design/logos/svg/birkenhof-zeichen-hell.svg" alt=""></div><div class="po-text"><span class="zahl">64</span><p>Fensterläden gestrichen. Danke an alle Hände.</p></div></div>
+        </div>
+        <figcaption><b>Social Media</b>Format 4:5 (1080 × 1350 px). Gelb für Termine, Grün für Rückblicke.</figcaption>
+      </figure>
+
+      <figure class="vorlage">
+        <div class="aushang" aria-hidden="true">
+          <span class="etikett e-haus">Haus</span>
+          <h4>Arbeitseinsatz Fensterläden</h4>
+          <p>Wir schleifen und streichen die Läden im Erdgeschoss. Werkzeug ist da.</p>
+          <dl><dt>Wann</dt><dd>Sa 10.10., 10:00 Uhr</dd><dt>Wo</dt><dd>Am Tor</dd></dl>
+        </div>
+        <figcaption><b>Aushang</b>Für Treppenhaus und Website: Titel, ein Satz, Wann und Wo.</figcaption>
+      </figure>
+
+      <figure class="vorlage">
+        <div class="karten" aria-hidden="true">
+          <div class="vk vorn"><img src="design/logos/svg/birkenhof-zeichen-hell.svg" alt=""></div>
+          <div class="vk hinten"><img src="design/logos/svg/birkenhof-zeichen-laden.svg" alt=""><div><b>Vorname Nachname</b><span class="label">Aufgabe im Verein</span></div><small>hallo@unser-birkenhof.de<br>www.unser-birkenhof.de</small></div>
+        </div>
+        <figcaption><b>Visitenkarte</b>85 × 55 mm. Vorne das Zeichen auf Grün, hinten Name und Kontakt auf Gelb.</figcaption>
+      </figure>
+
+      <figure class="vorlage">
+        <div class="brief" aria-hidden="true">
+          <div class="br-kopf"><img src="design/logos/svg/birkenhof-wortmarke.svg" alt=""><img src="design/logos/svg/birkenhof-zeichen-laden.svg" alt=""></div>
+          <div class="br-abs">Unser Birkenhof e.V. · Schillstraße 80i · 86167 Augsburg</div>
+          <div class="br-an">Empfänger<br>Straße Nr.<br>PLZ Ort</div>
+          <div class="br-text"><b>Betreff in Unbounded</b><span></span><span></span><span class="k"></span><span></span><span class="k"></span></div>
+          <div class="br-fuss"><div class="fensterband"></div><div class="br-zeile"><span>Unser Birkenhof e.V.<br>Schillstraße 80i, 86167 Augsburg</span><span>hallo@unser-birkenhof.de<br>www.unser-birkenhof.de</span></div></div>
+        </div>
+        <figcaption><b>Briefbogen</b>A4 nach DIN 5008. Schrift oben links, Zeichen rechts. Immer auf weißem Papier.</figcaption>
+      </figure>
+
+      <figure class="vorlage">
+        <div class="bausteine" aria-hidden="true">
+          <div class="bs-zeile"><span class="etikett">Begegnung</span><span class="etikett e-hof">Hof</span><span class="etikett e-haus">Haus</span></div>
+          <div class="bs-zeile"><span class="btn">Zum Hoffest anmelden</span><span class="btn btn-2">Mehr lesen</span></div>
+          <img class="bs-fenster" src="design/grafik/birkenhof-fenster.svg" alt="">
+        </div>
+        <figcaption><b>Bausteine</b>Ein Etikett sagt, worum es geht: Begegnung (Feste), Hof (Garten) oder Haus (Reparatur).</figcaption>
+      </figure>
+    </div>
+
+    <div class="fb-regel">
+      <div class="fensterband gross"></div>
+      <div class="regel">
+        <h3>Das Fensterband</h3>
+        <p>Unsere Fenster mit den grünen Läden, wie auf der Startseite. Einmal pro Flyer oder Plakat, oben oder unten.</p>
+        <p class="links"><a href="design/grafik/birkenhof-fensterband.png" download>Band als PNG</a><a href="design/grafik/birkenhof-fensterband.svg" download>Band als SVG</a><a href="design/grafik/birkenhof-fenster.png" download>Ein Fenster als PNG</a><a href="design/grafik/birkenhof-fenster.svg" download>Ein Fenster als SVG</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="text">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">5 · Text und Fotos</span>
+      <h2>Was draufsteht</h2>
+    </div>
+    <div class="regeln">
+      <div class="regel">
+        <h3>Schreiben</h3>
+        <ul class="punkte">
+          <li>Wir duzen uns.</li>
+          <li>Kurz: was, wann, wo, was mitbringen.</li>
+          <li>Einladen: „Komm vorbei“.</li>
+          <li>Datum so: „Sa 10.10., 10:00 Uhr“.</li>
+          <li>Keine Ausrufezeichen-Ketten.</li>
+        </ul>
+      </div>
+      <div class="regel">
+        <h3>Fotos</h3>
+        <ul class="punkte">
+          <li>Echte Fotos vom Haus und von uns.</li>
+          <li>Menschen nur, wenn sie zustimmen.</li>
+          <li>Text neben das Foto, nicht darauf.</li>
+          <li>Das Haus nie umfärben.</li>
+        </ul>
+      </div>
+      <div class="regel">
+        <h3>Vor dem Druck kurz prüfen</h3>
+        <ul class="punkte ja">
+          <li>Logo als Datei drin</li>
+          <li>Nur unsere Farben</li>
+          <li>Datum, Uhrzeit, Ort stimmen</li>
+          <li>Kontakt steht drauf</li>
+          <li>Jemand hat drübergelesen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block paket" id="download">
+  <div class="wrap paket-grid">
+    <div class="head">
+      <span class="label">Fragen?</span>
+      <h2>Wir helfen gern</h2>
+      <p>Dir fehlt eine Vorlage oder du bist unsicher? Schreib an <a href="mailto:hallo@unser-birkenhof.de">hallo@unser-birkenhof.de</a>. Lieber einmal fragen als neu drucken.</p>
+      <div class="aktionen" style="margin-top:var(--s2)">
+        <a class="button" href="design/birkenhof-design-guide.pdf" download>Alles als PDF</a>
+      </div>
+    </div>
+    <div class="head">
+      <h3>Alle Dateien</h3>
+      <ul class="dl">
+        <li><span>Logos</span><a href="#logo">oben bei Logo</a></li>
+        <li><span>Schriften</span><a href="#schriften">oben bei Schriften</a></li>
+        <li><span>Farbwerte</span><span><a href="design/farben/birkenhof-farben.txt" download>Liste</a><a href="design/farben/birkenhof-farben.css" download>CSS</a></span></li>
+        <li><span>Fensterband</span><span><a href="design/grafik/birkenhof-fensterband.png" download>PNG</a><a href="design/grafik/birkenhof-fensterband.svg" download>SVG</a></span></li>
+        <li><span>Lizenz der Schriften</span><span><a href="design/schriften/Unbounded-OFL.txt">Unbounded</a><a href="design/schriften/Onest-OFL.txt">Onest</a></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="fensterband"></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Unser Birkenhof e.V. i. G. · www.unser-birkenhof.de</span>
+    <span>Made with <span class="heart" aria-label="Liebe">♥</span> in Augsburg</span>
+    <span><a href="satzung.html">Satzung</a> · <a href="beitragsordnung.html">Beitragsordnung</a> · <a href="design.html">Gestaltung</a> · <a href="impressum.html#impressum">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.kopie').forEach(function(b){
+  b.addEventListener('click',function(){
+    var v=b.getAttribute('data-v');
+    var done=function(){b.textContent='kopiert';setTimeout(function(){b.textContent='kopieren'},1400)};
+    try{navigator.clipboard.writeText(v).then(done,function(){b.textContent=v})}catch(e){b.textContent=v}
+  });
+});
+</script>
+</body>
+</html>

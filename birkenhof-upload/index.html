@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Unser Birkenhof</title>
+<meta name="description" content="Unser Birkenhof – Verein der Hausgemeinschaft des Birkenhofs in Augsburg-Lechhausen.">
+<style>
+@font-face{font-family:"Unbounded";src:url("fonts/unbounded.woff2") format("woff2");font-weight:200 900;font-display:swap}
+@font-face{font-family:"Onest";src:url("fonts/onest.woff2") format("woff2");font-weight:100 900;font-display:swap}
+/* Layout: ein Onepager, linksbündig auf 1080px, Abschnitte durch Farbflächen getrennt; Fensterband als Abschluss */
+:root{
+  --kalk:#f8f4e9;--kalk-raised:#fffcf6;--linie:#e2d8bf;--putz:#f5e4b0;--putz-soft:#f9f0d6;--on-putz:#1f2620;
+  --laden:#2f6b45;--laden-fest:#2f6b45;--on-laden:#ffffff;--laden-soft:#dcebdc;
+  --ziegel:#6e5038;--on-ziegel:#ffffff;--ziegel-soft:#f8e0d3;--ink:#1f2620;--ink-muted:#586056;
+  --focus:0 0 0 2px #f8f4e9,0 0 0 4px #2f6b45;
+  --font-display:"Unbounded","Arial Black",sans-serif;--font-text:"Onest","Helvetica Neue",Arial,sans-serif;
+  --s1:4px;--s2:8px;--s3:16px;--s4:24px;--s5:40px;--s6:64px;--max:1080px;
+}
+:root{color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--kalk);color:var(--ink);font:400 17px/1.6 var(--font-text)}
+a{color:var(--laden);text-underline-offset:3px}
+a:focus-visible{outline:none;box-shadow:var(--focus)}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--s4)}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.1;letter-spacing:-.01em}
+h3{font-size:20px;line-height:1.3;font-weight:500}
+p{margin:0;max-width:62ch}
+.label{font:600 12px/16px var(--font-text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+
+/* Kopf */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--kalk);border-bottom:1px solid var(--linie)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);padding-block:var(--s3);flex-wrap:wrap}
+.brand{display:flex;align-items:flex-end;gap:12px;text-decoration:none;color:var(--ink)}
+.brand svg{color:var(--laden);flex:none}
+.wm{font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1;letter-spacing:-.01em}
+.wm i{display:block;font:normal 600 9px/1 var(--font-text);letter-spacing:.02em;margin:0 0 4px 1px}
+.wm small{font:600 11px/1 var(--font-text);margin-left:4px}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:var(--s4);flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
+nav a:hover{color:var(--laden);text-decoration:underline}
+@media (max-width:560px){nav ul{gap:var(--s2) var(--s3)}nav a{font-size:14px}}
+
+/* Start */
+.hero{background:var(--putz);color:var(--on-putz)}
+.hero .wrap{padding-block:var(--s6) var(--s5);display:grid;gap:var(--s4)}
+.hero h1{font-size:clamp(40px,8vw,88px);line-height:.95;letter-spacing:-.02em}
+.hero .claim{font:500 clamp(20px,2.4vw,26px)/1.35 var(--font-text)}
+.hero .label{color:var(--on-putz)}
+.hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:end;padding-block:var(--s6) 0;gap:var(--s5)}
+.hero-text{display:grid;gap:var(--s4);align-self:center;padding-bottom:var(--s5)}
+.hero-bild{align-self:end;margin-bottom:-1px}
+.hero-art{display:block;width:100%;height:auto}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:var(--s5) 0}.hero-text{padding-bottom:0}}
+.hero-art .fassade{fill:var(--putz)}
+.hero-art .traufe{fill:#1f2620;opacity:.18}
+.hero-art .schatten{fill:#1f2620;opacity:.08}
+.hero-art .boden{fill:#1f2620;opacity:.14}
+.hero-art .tor-hinweis text{font:500 12px var(--font-text);letter-spacing:.02em}
+.hero-art .tor-hinweis text{fill:#1f2620;opacity:.55}
+.hero-art .pfeil{fill:none;stroke:#1f2620;stroke-width:1.2;opacity:.45}
+.hero-art .tor-hinweis{transition:opacity .3s}
+.hero-art:has(.tor:hover) .tor-hinweis,.hero-art:has(.tor.offen) .tor-hinweis{opacity:0}
+.hero-art .laden{fill:var(--laden-fest)}
+.hero-art .rahmen{fill:#fbfaf5}
+.hero-art .bank{fill:#c9c4b4}
+.hero-art .glas{fill:#3e4b4f}
+.hero-art .spiegel{fill:#fff;opacity:.10}
+.hero-art .krone{fill:var(--laden-fest)}
+.hero-art .krone2{fill:#3b7d52}
+.hero-art .stamm{fill:#fbfaf5}
+.hero-art .ritz{fill:#1f2620}
+.hero-art .tor{--tor:#6e5038;--tor-hell:#9a7756;--tor-dunkel:#3d2c1f;cursor:pointer}
+.hero-art .tor .tor{fill:var(--tor)}
+.hero-art .tor-dunkel{fill:var(--tor-dunkel)}
+.hero-art .tor-linie{stroke:var(--tor-hell);stroke-width:2;fill:none}
+.hero-art .tor-fuge{fill:none;stroke:var(--tor-dunkel);stroke-width:2}
+.hero-art .stein{fill:#d6ccb2}
+.hero-art .bein{fill:#1f2620}
+.hero-art .fluegel{transform-box:fill-box;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+.hero-art .fl-l{transform-origin:left center}
+.hero-art .fl-r{transform-origin:right center}
+.hero-art .tor:hover .fluegel,.hero-art .tor.offen .fluegel{transform:scaleX(.1)}
+.hero-art .mensch{transform-box:fill-box;transform-origin:50% 100%}
+.hero-art .jubel{opacity:0}
+.hero-art .tor:hover .unten,.hero-art .tor.offen .unten{opacity:0;transition:opacity 0s .45s}
+.hero-art .tor:hover .j1,.hero-art .tor.offen .j1{animation:winken .5s steps(1) .45s infinite}
+.hero-art .tor:hover .j2,.hero-art .tor.offen .j2{animation:winken .5s steps(1) .7s infinite}
+.hero-art .tor:hover .mensch,.hero-art .tor.offen .mensch{animation:jubelsprung .5s ease-in-out .5s infinite alternate}
+.hero-art .tor:hover .m1,.hero-art .tor.offen .m1{animation-delay:.6s}
+.hero-art .tor:hover .m2,.hero-art .tor.offen .m2{animation-delay:.75s;animation-duration:.42s}
+.hero-art .tor:hover .m3,.hero-art .tor.offen .m3{animation-delay:.55s;animation-duration:.55s}
+.hero-art .tor:hover .hopp2,.hero-art .tor.offen .hopp2{animation-delay:.68s}
+@keyframes winken{0%{opacity:1}50%{opacity:0}}
+@keyframes jubelsprung{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+.spiel-start{justify-self:start;font:500 14px/1.4 var(--font-text);color:var(--ink-muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-color:rgba(31,38,32,.3);text-underline-offset:4px}
+.spiel-start:hover{color:var(--ink);text-decoration-color:currentColor}
+.hero-art .nachbar{opacity:0;transform:translateY(8px);transition:opacity .15s,transform .2s}
+.hero-art .fenster.da .nachbar{opacity:1;transform:none}
+.hero-art .fenster.da .winkarm{transform-box:fill-box;transform-origin:50% 100%;animation:wink .3s ease-in-out infinite alternate}
+@keyframes wink{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+.hero-art .hallo{font:700 13px var(--font-text);fill:#1f2620;opacity:0;transition:opacity .2s}
+.hero-art .fenster.gegruesst .hallo{opacity:1}
+.hero-art .spiel-status{font:600 14px var(--font-text);fill:#1f2620}
+.hero-art.spielt .fenster{cursor:pointer}
+.hero-art .ld{transform-box:fill-box}
+.hero-art .ld-l{transform-origin:right center}
+.hero-art .ld-r{transform-origin:left center}
+.hero-art .fenster{cursor:pointer}
+.hero-art .fenster.klapp .ld{animation:laden 2.2s cubic-bezier(.4,0,.3,1)}
+@keyframes laden{0%{transform:scaleX(1)}30%,65%{transform:scaleX(-1);filter:brightness(.82)}100%{transform:scaleX(1)}}
+
+section.block{border-top:1px solid var(--linie)}
+section.block .wrap{padding-block:var(--s6);display:grid;gap:var(--s5)}
+.head{display:grid;gap:var(--s3)}
+
+/* Ziele */
+.ziele{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s4)}
+.ziel{background:transparent;border-top:1px solid var(--ink);padding:var(--s4) 0 0;display:grid;gap:var(--s3);align-content:start;min-width:0}
+.tag{display:inline-flex;align-items:center;gap:var(--s2);justify-self:start;font:600 12px/16px var(--font-text);letter-spacing:.08em;text-transform:uppercase;padding:0;background:none;color:var(--ink-muted)}
+.tag::before{content:"";width:8px;height:8px;background:currentColor}
+.tag.hof::before{border-radius:50%}
+.tag.haus::before{transform:rotate(45deg)}
+
+/* Termine */
+.alt{border-top:1px solid var(--linie)}
+.events:empty{display:none}
+[hidden]{display:none!important}
+.events{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3)}
+.event{display:grid;grid-template-columns:120px 1fr;gap:var(--s4);padding:var(--s4) 0;border-top:1px solid var(--linie)}
+.event .date{font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
+.event .date span{display:block;font:600 12px/16px var(--font-text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-top:var(--s2)}
+.event .body{display:grid;gap:var(--s2);min-width:0}
+.event dl{margin:0;display:flex;flex-wrap:wrap;gap:var(--s1) var(--s4);font-size:15px}
+.event dt{font:600 12px/24px var(--font-text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-right:var(--s1)}
+.event dd{margin:0}
+.event dl div{display:flex}
+.empty{padding:var(--s4) 0;display:grid;gap:var(--s2);border-top:1px solid var(--linie);border-bottom:1px solid var(--linie)}
+@media (max-width:560px){.event{grid-template-columns:1fr;gap:var(--s3)}}
+
+/* Mitglied werden */
+.mitglied{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s5);align-items:start}
+.preise{list-style:none;margin:0;padding:0;display:grid}
+.preise li{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--linie);flex-wrap:wrap}
+.preise li:last-child{border-bottom:1px solid var(--linie)}
+.preise strong{font:600 clamp(18px,4.6vw,24px)/1.2 var(--font-display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.preise li > span{min-width:0}
+@media (max-width:560px){.preise li,.dokumente li{flex-wrap:nowrap}.dokumente .hinweis{font-size:12px;text-align:right}}
+.cta{display:grid;gap:var(--s3);justify-items:start}
+.dokumente{display:grid;gap:var(--s2);margin-top:var(--s3);width:100%}
+.dokumente ul{list-style:none;margin:0;padding:0;display:grid}
+.dokumente li{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3);padding:var(--s2) 0;border-top:1px solid var(--linie);flex-wrap:wrap}
+.dokumente li:last-child{border-bottom:1px solid var(--linie)}
+.dokumente a{font-weight:600}
+.dokumente a:first-child::before{content:"→ ";font-weight:400}
+.dokumente a.hinweis{font-weight:400;color:var(--ink-muted)}
+.dokumente a.hinweis::before{content:"↓ "}
+.button{display:inline-flex;align-items:center;gap:var(--s2);font:600 16px/20px var(--font-text);padding:14px var(--s4);background:var(--laden);color:var(--on-laden);text-decoration:none;border:2px solid var(--laden)}
+.button:hover{background:var(--ink);border-color:var(--ink);color:var(--kalk)}
+.button:focus-visible{outline:none;box-shadow:var(--focus)}
+.hinweis{font:400 14px/1.5 var(--font-text);color:var(--ink-muted)}
+
+/* Kontakt */
+.kontakt{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s4)}
+.kontakt > div{display:grid;gap:var(--s2);align-content:start}
+.mail{font:600 clamp(18px,2.4vw,24px)/1.3 var(--font-display);word-break:break-word}
+.people{list-style:none;margin:0;padding:0;display:grid;gap:var(--s2)}
+.people li{display:flex;justify-content:space-between;gap:var(--s3);border-bottom:1px solid var(--linie);padding-bottom:var(--s2);flex-wrap:wrap}
+.people span{color:var(--ink-muted)}
+.rot{background:var(--ziegel);color:var(--on-ziegel);border-top:0}
+.rot .label,.rot .people span{color:var(--on-ziegel);opacity:.8}
+.rot .mail{color:var(--on-ziegel)}
+.rot .people li{border-bottom-color:color-mix(in srgb,currentColor 35%,transparent)}
+.rot a:focus-visible{box-shadow:0 0 0 2px var(--ziegel),0 0 0 4px var(--on-ziegel)}
+
+/* Rechtliches */
+.legal{border-top:1px solid var(--linie)}
+.legal .wrap{padding-block:var(--s5);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:var(--s5)}
+@media (max-width:760px){.legal .wrap{grid-template-columns:1fr}}
+.legal h3{font:600 15px/1.4 var(--font-text);margin-top:var(--s2)}
+.legal h2{font-size:22px}
+.legal p,.legal address{font-size:15px;font-style:normal}
+.legal > .wrap > div{display:grid;gap:var(--s3);align-content:start}
+.ph{background:var(--putz-soft);color:var(--ink);padding:0 4px;font-weight:600}
+
+footer{border-top:1px solid var(--linie);color:var(--ink-muted)}
+footer .wrap{padding-block:var(--s4);display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;font-size:14px}
+footer a{color:var(--ink-muted)}
+.legal.page{border-top:0}
+.legal.page .wrap{padding-block:var(--s6)}
+.pagehead{padding-block:var(--s6) 0;display:grid;gap:var(--s3)}
+.pagehead h1{font-size:clamp(32px,5vw,48px);line-height:1.05;letter-spacing:-.01em}
+.heart{color:#8e1f2f}
+.doc{padding-block:0 var(--s6);display:grid;gap:var(--s5)}
+.docmeta{color:var(--ink-muted);font-size:15px}
+.toc{border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);padding:var(--s3) 0;max-width:68ch}
+.toc summary{cursor:pointer;font:600 12px/16px var(--font-text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+.toc ol{list-style:none;margin:var(--s3) 0 0;padding:0;columns:2 260px;column-gap:var(--s5)}
+.toc li{break-inside:avoid;padding:3px 0;font-size:15px}
+.toc a{color:var(--ink);text-decoration:none}.toc a:hover{color:var(--laden);text-decoration:underline}
+.doctext{display:grid;gap:var(--s3);max-width:68ch}
+.doctext .para{display:grid;gap:var(--s3);scroll-margin-top:96px;padding-top:var(--s4)}
+.doctext h2{font-size:clamp(20px,2.4vw,24px);line-height:1.25;font-weight:500}
+.doctext h2 span{color:var(--laden);font-weight:600;margin-right:6px}
+.doctext p{max-width:none}
+.doctext .abs,.doctext .li{display:grid;grid-template-columns:2.2em 1fr;gap:4px}
+.doctext .li{padding-left:2.2em}
+.doctext .abs + .li,.doctext p + .li{margin-top:-6px}
+.doctext .nr{font-variant-numeric:tabular-nums;color:var(--ink-muted)}
+.doctext .lead-doc{font:500 18px/1.5 var(--font-text)}
+.doctext .ort{margin-top:var(--s4);color:var(--ink-muted)}
+.anlage{list-style:none;margin:0;padding:0;display:grid}
+.anlage li{padding:var(--s2) 0;border-top:1px solid var(--linie)}.anlage li:last-child{border-bottom:1px solid var(--linie)}
+.docback a{font-weight:600}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#start" aria-label="Unser Birkenhof, zum Seitenanfang">
+      <svg viewBox="0 0 64 64" width="36" height="36" aria-hidden="true"><mask id="bm"><rect width="64" height="64" fill="#fff"/><rect x="14" y="14" width="36" height="36" fill="#000"/><rect x="26" y="49" width="12" height="16" fill="#000"/><rect x="26" y="-1" width="12" height="16" fill="#000"/><circle cx="32" cy="32" r="8" fill="#fff"/></mask><rect width="64" height="64" fill="currentColor" mask="url(#bm)"/></svg>
+      <span class="wm"><i>unser</i>birkenhof</span>
+    </a>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#verein">Verein</a></li>
+        <li><a href="#termine">Termine</a></li>
+        <li><a href="#mitglied">Mitglied werden</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="start">
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="label">Hausgemeinschaft in Augsburg-Lechhausen · Verein in Gründung</span>
+        <h1>Unser Birkenhof</h1>
+        <p class="claim">Ein Haus, viele Hände.</p>
+        <button type="button" class="spiel-start">Kleines Spiel: Grüß die Nachbarn →</button>
+      </div>
+      <div class="hero-bild"><svg class="hero-art" viewBox="0 0 560 406" role="img" aria-label="Zeichnung der Fassade des Birkenhofs mit grünen Fensterläden, Tor und Birke"><defs><clipPath id="torflaeche"><rect x="58" y="22" width="84" height="58"/></clipPath><clipPath id="fluegel-l"><rect x="58" y="22" width="42" height="58"/></clipPath><clipPath id="fluegel-r"><rect x="100" y="22" width="42" height="58"/></clipPath><pattern id="lamellen" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1.6" fill="#1f4a30"/></pattern></defs><rect class="fassade" x="0" y="34" width="560" height="372"/><g transform="rotate(45 140 70)"><rect class="schatten" x="130" y="61" width="22" height="22"/><rect class="rahmen" x="129" y="59" width="22" height="22"/><rect class="glas" x="132" y="62" width="16" height="16"/></g><g transform="rotate(45 280 70)"><rect class="schatten" x="270" y="61" width="22" height="22"/><rect class="rahmen" x="269" y="59" width="22" height="22"/><rect class="glas" x="272" y="62" width="16" height="16"/></g><g transform="rotate(45 420 70)"><rect class="schatten" x="410" y="61" width="22" height="22"/><rect class="rahmen" x="409" y="59" width="22" height="22"/><rect class="glas" x="412" y="62" width="16" height="16"/></g><g class="fenster"><rect class="schatten" x="29.0" y="106" width="84" height="58"/><rect class="rahmen" x="50.0" y="104" width="40" height="56"/><rect class="glas" x="53.0" y="107" width="34" height="50"/><path class="spiegel" d="M53.0 134.5 L71.7 107 L78.5 107 L53.0 147.0 Z"/><rect class="rahmen" x="68.5" y="107" width="3" height="50"/><rect class="rahmen" x="53.0" y="127.0" width="34" height="3"/><rect class="rahmen" x="53.0" y="142.5" width="34" height="2"/><g class="nachbar"><path d="M57 157 Q57 137 70 137 Q83 137 83 157 Z" fill="#a84527"/><circle cx="70" cy="127" r="8" fill="#e3b58c"/><path class="winkarm" d="M79 143 L84 124" stroke="#e3b58c" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="48.0" y="160" width="44" height="3"/><text class="hallo" x="70" y="98" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="29.0" y="104" width="20" height="56"/><rect fill="url(#lamellen)" x="32.0" y="107" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="91.0" y="104" width="20" height="56"/><rect fill="url(#lamellen)" x="94.0" y="107" width="14" height="50"/></g></g><g class="fenster"><rect class="schatten" x="169.0" y="106" width="84" height="58"/><rect class="rahmen" x="190.0" y="104" width="40" height="56"/><rect class="glas" x="193.0" y="107" width="34" height="50"/><path class="spiegel" d="M193.0 134.5 L211.7 107 L218.5 107 L193.0 147.0 Z"/><rect class="rahmen" x="208.5" y="107" width="3" height="50"/><rect class="rahmen" x="193.0" y="127.0" width="34" height="3"/><rect class="rahmen" x="193.0" y="142.5" width="34" height="2"/><g class="nachbar"><path d="M197 157 Q197 137 210 137 Q223 137 223 157 Z" fill="#2f6b45"/><circle cx="210" cy="127" r="8" fill="#8a5a3a"/><path class="winkarm" d="M219 143 L224 124" stroke="#8a5a3a" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="188.0" y="160" width="44" height="3"/><text class="hallo" x="210" y="98" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="169.0" y="104" width="20" height="56"/><rect fill="url(#lamellen)" x="172.0" y="107" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="231.0" y="104" width="20" height="56"/><rect fill="url(#lamellen)" x="234.0" y="107" width="14" height="50"/></g></g><g class="fenster"><rect class="schatten" x="309.0" y="106" width="84" height="58"/><rect class="rahmen" x="330.0" y="104" width="40" height="56"/><rect class="glas" x="333.0" y="107" width="34" height="50"/><path class="spiegel" d="M333.0 134.5 L351.7 107 L358.5 107 L333.0 147.0 Z"/><rect class="rahmen" x="348.5" y="107" width="3" height="50"/><rect class="rahmen" x="333.0" y="127.0" width="34" height="3"/><rect class="rahmen" x="333.0" y="142.5" width="34" height="2"/><g class="nachbar"><path d="M337 157 Q337 137 350 137 Q363 137 363 157 Z" fill="#3e4b4f"/><circle cx="350" cy="127" r="8" fill="#f0cfae"/><path class="winkarm" d="M359 143 L364 124" stroke="#f0cfae" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="328.0" y="160" width="44" height="3"/><text class="hallo" x="350" y="98" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="309.0" y="104" width="20" height="56"/><rect fill="url(#lamellen)" x="312.0" y="107" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="371.0" y="104" width="20" height="56"/><rect fill="url(#lamellen)" x="374.0" y="107" width="14" height="50"/></g></g><g class="fenster"><rect class="schatten" x="449.0" y="106" width="84" height="58"/><rect class="rahmen" x="470.0" y="104" width="40" height="56"/><rect class="glas" x="473.0" y="107" width="34" height="50"/><path class="spiegel" d="M473.0 134.5 L491.7 107 L498.5 107 L473.0 147.0 Z"/><rect class="rahmen" x="488.5" y="107" width="3" height="50"/><rect class="rahmen" x="473.0" y="127.0" width="34" height="3"/><rect class="rahmen" x="473.0" y="142.5" width="34" height="2"/><g class="nachbar"><path d="M477 157 Q477 137 490 137 Q503 137 503 157 Z" fill="#e0b84f"/><circle cx="490" cy="127" r="8" fill="#c98f62"/><path class="winkarm" d="M499 143 L504 124" stroke="#c98f62" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="468.0" y="160" width="44" height="3"/><text class="hallo" x="490" y="98" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="449.0" y="104" width="20" height="56"/><rect fill="url(#lamellen)" x="452.0" y="107" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="511.0" y="104" width="20" height="56"/><rect fill="url(#lamellen)" x="514.0" y="107" width="14" height="50"/></g></g><g class="fenster"><rect class="schatten" x="29.0" y="196" width="84" height="58"/><rect class="rahmen" x="50.0" y="194" width="40" height="56"/><rect class="glas" x="53.0" y="197" width="34" height="50"/><path class="spiegel" d="M53.0 224.5 L71.7 197 L78.5 197 L53.0 237.0 Z"/><rect class="rahmen" x="68.5" y="197" width="3" height="50"/><rect class="rahmen" x="53.0" y="217.0" width="34" height="3"/><rect class="rahmen" x="53.0" y="232.5" width="34" height="2"/><g class="nachbar"><path d="M57 247 Q57 227 70 227 Q83 227 83 247 Z" fill="#2f6b45"/><circle cx="70" cy="217" r="8" fill="#e3b58c"/><path class="winkarm" d="M79 233 L84 214" stroke="#e3b58c" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="48.0" y="250" width="44" height="3"/><text class="hallo" x="70" y="188" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="29.0" y="194" width="20" height="56"/><rect fill="url(#lamellen)" x="32.0" y="197" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="91.0" y="194" width="20" height="56"/><rect fill="url(#lamellen)" x="94.0" y="197" width="14" height="50"/></g></g><g class="fenster"><rect class="schatten" x="169.0" y="196" width="84" height="58"/><rect class="rahmen" x="190.0" y="194" width="40" height="56"/><rect class="glas" x="193.0" y="197" width="34" height="50"/><path class="spiegel" d="M193.0 224.5 L211.7 197 L218.5 197 L193.0 237.0 Z"/><rect class="rahmen" x="208.5" y="197" width="3" height="50"/><rect class="rahmen" x="193.0" y="217.0" width="34" height="3"/><rect class="rahmen" x="193.0" y="232.5" width="34" height="2"/><g class="nachbar"><path d="M197 247 Q197 227 210 227 Q223 227 223 247 Z" fill="#a84527"/><circle cx="210" cy="217" r="8" fill="#e3b58c"/><path class="winkarm" d="M219 233 L224 214" stroke="#e3b58c" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="188.0" y="250" width="44" height="3"/><text class="hallo" x="210" y="188" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="169.0" y="194" width="20" height="56"/><rect fill="url(#lamellen)" x="172.0" y="197" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="231.0" y="194" width="20" height="56"/><rect fill="url(#lamellen)" x="234.0" y="197" width="14" height="50"/></g></g><g class="fenster"><rect class="schatten" x="309.0" y="196" width="84" height="58"/><rect class="rahmen" x="330.0" y="194" width="40" height="56"/><rect class="glas" x="333.0" y="197" width="34" height="50"/><path class="spiegel" d="M333.0 224.5 L351.7 197 L358.5 197 L333.0 237.0 Z"/><rect class="rahmen" x="348.5" y="197" width="3" height="50"/><rect class="rahmen" x="333.0" y="217.0" width="34" height="3"/><rect class="rahmen" x="333.0" y="232.5" width="34" height="2"/><g class="nachbar"><path d="M337 247 Q337 227 350 227 Q363 227 363 247 Z" fill="#2f6b45"/><circle cx="350" cy="217" r="8" fill="#8a5a3a"/><path class="winkarm" d="M359 233 L364 214" stroke="#8a5a3a" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="328.0" y="250" width="44" height="3"/><text class="hallo" x="350" y="188" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="309.0" y="194" width="20" height="56"/><rect fill="url(#lamellen)" x="312.0" y="197" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="371.0" y="194" width="20" height="56"/><rect fill="url(#lamellen)" x="374.0" y="197" width="14" height="50"/></g></g><g class="fenster"><rect class="schatten" x="449.0" y="196" width="84" height="58"/><rect class="rahmen" x="470.0" y="194" width="40" height="56"/><rect class="glas" x="473.0" y="197" width="34" height="50"/><path class="spiegel" d="M473.0 224.5 L491.7 197 L498.5 197 L473.0 237.0 Z"/><rect class="rahmen" x="488.5" y="197" width="3" height="50"/><rect class="rahmen" x="473.0" y="217.0" width="34" height="3"/><rect class="rahmen" x="473.0" y="232.5" width="34" height="2"/><g class="nachbar"><path d="M477 247 Q477 227 490 227 Q503 227 503 247 Z" fill="#3e4b4f"/><circle cx="490" cy="217" r="8" fill="#f0cfae"/><path class="winkarm" d="M499 233 L504 214" stroke="#f0cfae" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="468.0" y="250" width="44" height="3"/><text class="hallo" x="490" y="188" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="449.0" y="194" width="20" height="56"/><rect fill="url(#lamellen)" x="452.0" y="197" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="511.0" y="194" width="20" height="56"/><rect fill="url(#lamellen)" x="514.0" y="197" width="14" height="50"/></g></g><g class="fenster"><rect class="schatten" x="29.0" y="302" width="84" height="58"/><rect class="rahmen" x="50.0" y="300" width="40" height="56"/><rect class="glas" x="53.0" y="303" width="34" height="50"/><path class="spiegel" d="M53.0 330.5 L71.7 303 L78.5 303 L53.0 343.0 Z"/><rect class="rahmen" x="68.5" y="303" width="3" height="50"/><rect class="rahmen" x="53.0" y="323.0" width="34" height="3"/><rect class="rahmen" x="53.0" y="338.5" width="34" height="2"/><g class="nachbar"><path d="M57 353 Q57 333 70 333 Q83 333 83 353 Z" fill="#e0b84f"/><circle cx="70" cy="323" r="8" fill="#c98f62"/><path class="winkarm" d="M79 339 L84 320" stroke="#c98f62" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="48.0" y="356" width="44" height="3"/><text class="hallo" x="70" y="294" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="29.0" y="300" width="20" height="56"/><rect fill="url(#lamellen)" x="32.0" y="303" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="91.0" y="300" width="20" height="56"/><rect fill="url(#lamellen)" x="94.0" y="303" width="14" height="50"/></g></g><g class="fenster"><rect class="schatten" x="449.0" y="302" width="84" height="58"/><rect class="rahmen" x="470.0" y="300" width="40" height="56"/><rect class="glas" x="473.0" y="303" width="34" height="50"/><path class="spiegel" d="M473.0 330.5 L491.7 303 L498.5 303 L473.0 343.0 Z"/><rect class="rahmen" x="488.5" y="303" width="3" height="50"/><rect class="rahmen" x="473.0" y="323.0" width="34" height="3"/><rect class="rahmen" x="473.0" y="338.5" width="34" height="2"/><g class="nachbar"><path d="M477 353 Q477 333 490 333 Q503 333 503 353 Z" fill="#2f6b45"/><circle cx="490" cy="323" r="8" fill="#e3b58c"/><path class="winkarm" d="M499 339 L504 320" stroke="#e3b58c" stroke-width="3.6" stroke-linecap="round"/></g><rect class="bank" x="468.0" y="356" width="44" height="3"/><text class="hallo" x="490" y="294" text-anchor="middle">Hallo!</text><g class="ld ld-l"><rect class="laden" x="449.0" y="300" width="20" height="56"/><rect fill="url(#lamellen)" x="452.0" y="303" width="14" height="50"/></g><g class="ld ld-r"><rect class="laden" x="511.0" y="300" width="20" height="56"/><rect fill="url(#lamellen)" x="514.0" y="303" width="14" height="50"/></g></g><g class="tor" transform="translate(150 300) scale(1.3)"><rect class="tor-dunkel" x="52" y="16" width="96" height="64"/><g clip-path="url(#torflaeche)"><rect x="58" y="22" width="84" height="58" fill="#fffcf6"/><rect x="58" y="72" width="84" height="8" fill="#cfe3cf"/><path d="M58 30 Q100 38 142 30" stroke="#1f2620" stroke-width="0.8" fill="none"/><path d="M62 31 l4 0 l-2 5 Z" fill="#a84527"/><path d="M70 31 l4 0 l-2 5 Z" fill="#2f6b45"/><path d="M78 31 l4 0 l-2 5 Z" fill="#e0b84f"/><path d="M86 31 l4 0 l-2 5 Z" fill="#a84527"/><path d="M94 31 l4 0 l-2 5 Z" fill="#2f6b45"/><path d="M102 31 l4 0 l-2 5 Z" fill="#e0b84f"/><path d="M110 31 l4 0 l-2 5 Z" fill="#a84527"/><path d="M118 31 l4 0 l-2 5 Z" fill="#2f6b45"/><path d="M126 31 l4 0 l-2 5 Z" fill="#e0b84f"/><path d="M134 31 l4 0 l-2 5 Z" fill="#a84527"/><g transform="translate(4 0)"><g class="mensch m2"><circle cx="66" cy="53.6" r="2.9" fill="#c98f62"/><rect x="63.1" y="57.4" width="5.8" height="9.4" fill="#4f7fa6"/><rect x="63.6" y="66.8" width="1.9" height="7.2" class="bein"/><rect x="66.5" y="66.8" width="1.9" height="7.2" class="bein"/><path class="arme unten" d="M63.1 58.9 L59.5 52.4 M68.9 58.9 L72.5 52.4" stroke="#c98f62" stroke-width="1.7" stroke-linecap="round" fill="none"/><path class="arme jubel j1" d="M63.1 58.9 L59.2 52.6 M68.9 58.9 L72.8 52.6" stroke="#c98f62" stroke-width="1.7" stroke-linecap="round" fill="none"/><path class="arme jubel j2" d="M63.1 58.9 L61.6 51.6 M68.9 58.9 L70.4 51.6" stroke="#c98f62" stroke-width="1.7" stroke-linecap="round" fill="none"/></g></g><g transform="translate(4 0)"><g class="mensch m1"><circle cx="84" cy="53.6" r="2.9" fill="#8a5a3a"/><rect x="81.1" y="57.4" width="5.8" height="9.4" fill="#e0b84f"/><rect x="81.6" y="66.8" width="1.9" height="7.2" class="bein"/><rect x="84.5" y="66.8" width="1.9" height="7.2" class="bein"/><path class="arme unten" d="M81.1 58.9 L76.1 60.3 M86.9 58.9 L91.9 56.0" stroke="#8a5a3a" stroke-width="1.7" stroke-linecap="round" fill="none"/><path class="arme jubel j1" d="M81.1 58.9 L78.3 54.5 M86.9 58.9 L89.7 54.5" stroke="#8a5a3a" stroke-width="1.7" stroke-linecap="round" fill="none"/><path class="arme jubel j2" d="M81.1 58.9 L80.0 53.8 M86.9 58.9 L88.0 53.8" stroke="#8a5a3a" stroke-width="1.7" stroke-linecap="round" fill="none"/></g></g><g transform="translate(-4 0)"><g class="mensch m3"><circle cx="116" cy="53.6" r="2.9" fill="#f0cfae"/><rect x="113.1" y="57.4" width="5.8" height="9.4" fill="#2f6b45"/><rect x="113.6" y="66.8" width="1.9" height="7.2" class="bein"/><rect x="116.5" y="66.8" width="1.9" height="7.2" class="bein"/><path class="arme unten" d="M113.1 58.9 L108.8 53.1 M118.9 58.9 L121.8 64.6" stroke="#f0cfae" stroke-width="1.7" stroke-linecap="round" fill="none"/><path class="arme jubel j1" d="M113.1 58.9 L109.3 52.8 M118.9 58.9 L122.7 52.8" stroke="#f0cfae" stroke-width="1.7" stroke-linecap="round" fill="none"/><path class="arme jubel j2" d="M113.1 58.9 L111.6 51.8 M118.9 58.9 L120.4 51.8" stroke="#f0cfae" stroke-width="1.7" stroke-linecap="round" fill="none"/></g></g><g transform="translate(-4 0)"><g class="mensch hopp"><circle cx="134" cy="53.6" r="2.9" fill="#e3b58c"/><rect x="131.1" y="57.4" width="5.8" height="9.4" fill="#a84527"/><rect x="131.6" y="66.8" width="1.9" height="7.2" class="bein"/><rect x="134.5" y="66.8" width="1.9" height="7.2" class="bein"/><path class="arme unten" d="M131.1 58.9 L127.5 52.4 M136.9 58.9 L140.5 52.4" stroke="#e3b58c" stroke-width="1.7" stroke-linecap="round" fill="none"/><path class="arme jubel j1" d="M131.1 58.9 L127.2 52.6 M136.9 58.9 L140.8 52.6" stroke="#e3b58c" stroke-width="1.7" stroke-linecap="round" fill="none"/><path class="arme jubel j2" d="M131.1 58.9 L129.6 51.6 M136.9 58.9 L138.4 51.6" stroke="#e3b58c" stroke-width="1.7" stroke-linecap="round" fill="none"/></g></g><g class="mensch m1"><circle cx="72" cy="54.7" r="3.6" fill="#e3b58c"/><rect x="68.4" y="59.3" width="7.2" height="11.7" fill="#2f6b45"/><rect x="68.9" y="71.0" width="2.6" height="9.0" class="bein"/><rect x="72.5" y="71.0" width="2.6" height="9.0" class="bein"/><path class="arme unten" d="M68.4 61.1 L64.8 68.3 M75.6 61.1 L81.0 53.9" stroke="#e3b58c" stroke-width="2.2" stroke-linecap="round" fill="none"/><path class="arme jubel j1" d="M68.4 61.1 L64.1 54.3 M75.6 61.1 L79.9 54.3" stroke="#e3b58c" stroke-width="2.2" stroke-linecap="round" fill="none"/><path class="arme jubel j2" d="M68.4 61.1 L66.7 53.2 M75.6 61.1 L77.3 53.2" stroke="#e3b58c" stroke-width="2.2" stroke-linecap="round" fill="none"/></g><g class="mensch hopp"><circle cx="92" cy="62.8" r="2.4" fill="#8a5a3a"/><rect x="89.6" y="66.2" width="4.8" height="7.8" fill="#a84527"/><rect x="90.1" y="74.0" width="1.4" height="6.0" class="bein"/><rect x="92.5" y="74.0" width="1.4" height="6.0" class="bein"/><path class="arme unten" d="M89.6 67.4 L86.6 62.0 M94.4 67.4 L97.4 62.0" stroke="#8a5a3a" stroke-width="1.4" stroke-linecap="round" fill="none"/><path class="arme jubel j1" d="M89.6 67.4 L86.3 62.2 M94.4 67.4 L97.7 62.2" stroke="#8a5a3a" stroke-width="1.4" stroke-linecap="round" fill="none"/><path class="arme jubel j2" d="M89.6 67.4 L88.3 61.4 M94.4 67.4 L95.7 61.4" stroke="#8a5a3a" stroke-width="1.4" stroke-linecap="round" fill="none"/></g><g class="mensch hopp2"><circle cx="106" cy="62.8" r="2.4" fill="#f0cfae"/><rect x="103.6" y="66.2" width="4.8" height="7.8" fill="#e0b84f"/><rect x="104.1" y="74.0" width="1.4" height="6.0" class="bein"/><rect x="106.5" y="74.0" width="1.4" height="6.0" class="bein"/><path class="arme unten" d="M103.6 67.4 L100.6 62.0 M108.4 67.4 L111.4 62.0" stroke="#f0cfae" stroke-width="1.4" stroke-linecap="round" fill="none"/><path class="arme jubel j1" d="M103.6 67.4 L100.3 62.2 M108.4 67.4 L111.7 62.2" stroke="#f0cfae" stroke-width="1.4" stroke-linecap="round" fill="none"/><path class="arme jubel j2" d="M103.6 67.4 L102.3 61.4 M108.4 67.4 L109.7 61.4" stroke="#f0cfae" stroke-width="1.4" stroke-linecap="round" fill="none"/></g><g class="mensch m3"><circle cx="127" cy="54.7" r="3.6" fill="#c98f62"/><rect x="123.4" y="59.3" width="7.2" height="11.7" fill="#8a6a50"/><rect x="123.9" y="71.0" width="2.6" height="9.0" class="bein"/><rect x="127.5" y="71.0" width="2.6" height="9.0" class="bein"/><path class="arme unten" d="M123.4 61.1 L117.1 62.9 M130.6 61.1 L136.9 57.5" stroke="#c98f62" stroke-width="2.2" stroke-linecap="round" fill="none"/><path class="arme jubel j1" d="M123.4 61.1 L119.9 55.5 M130.6 61.1 L134.1 55.5" stroke="#c98f62" stroke-width="2.2" stroke-linecap="round" fill="none"/><path class="arme jubel j2" d="M123.4 61.1 L122.0 54.7 M130.6 61.1 L132.0 54.7" stroke="#c98f62" stroke-width="2.2" stroke-linecap="round" fill="none"/></g></g><g class="fluegel fl-l"><rect class="tor" x="58" y="22" width="42" height="58"/><g clip-path="url(#fluegel-l)" class="tor-linie"><path d="M100 22 L56 81 M80 22 L52 59.5 M100 44 L72 81.5"/></g><rect class="tor-dunkel" x="98" y="22" width="2" height="58"/><path class="tor-fuge" d="M100 53 H91 V80"/></g><g class="fluegel fl-r"><rect class="tor" x="100" y="22" width="42" height="58"/><g clip-path="url(#fluegel-r)" class="tor-linie"><path d="M100 22 L144 81 M120 22 L148 59.5 M100 44 L128 81.5"/></g><rect class="tor-dunkel" x="100" y="22" width="2" height="58"/><path class="tor-fuge" d="M100 53 H109 V80"/></g><path class="stein" d="M34 80 a8 8 0 0 1 16 0 Z M150 80 a8 8 0 0 1 16 0 Z"/></g><rect class="boden" x="0" y="404" width="560" height="2"/><g class="tor-hinweis" aria-hidden="true"><text class="zu" x="176" y="392" text-anchor="end">Mach mit</text><path class="zu pfeil" d="M179 388 h9 m-4 -4 l4 4 l-4 4"/></g><g class="baum"><circle class="krone" cx="398" cy="300" r="34"/><circle class="krone2" cx="376" cy="324" r="16"/><rect class="stamm" x="394" y="320" width="8" height="84"/><rect class="ritz" x="394" y="338" width="4" height="2"/><rect class="ritz" x="397" y="358" width="5" height="2"/><rect class="ritz" x="394" y="378" width="5" height="2"/><rect class="ritz" x="397" y="394" width="4" height="2"/></g><text class="spiel-status" x="280" y="24" text-anchor="middle" aria-live="polite"></text></svg></div>
+    </div>
+  </section>
+
+  <script>
+(function(){var t=document.querySelector('.hero-art .tor');if(!t)return;
+t.addEventListener('mouseenter',function(){t.classList.add('offen')});
+t.addEventListener('click',function(){t.classList.add('offen')});})();
+document.querySelectorAll('.hero-art .fenster').forEach(function(f){
+function k(){if(f.closest('.spielt'))return;f.classList.add('klapp');}
+f.addEventListener('mouseenter',k);f.addEventListener('click',k);
+f.addEventListener('animationend',function(e){if(e.target.classList.contains('ld-r'))f.classList.remove('klapp');});});
+(function(){var svg=document.querySelector('.hero-art'),btn=document.querySelector('.spiel-start');if(!svg||!btn)return;
+var st=svg.querySelector('.spiel-status'),F=[].slice.call(svg.querySelectorAll('.fenster')),on=false,score=0,end=0,cur=null,tm,iv;
+function upd(){st.textContent='Gegrüßt: '+score+' · noch '+Math.max(0,Math.ceil((end-Date.now())/1000))+' s';}
+function zeig(){if(!on)return;if(Date.now()>=end)return fertig();var f;
+do{f=F[Math.floor(Math.random()*F.length)]}while(f===cur);cur=f;f.classList.add('da');
+tm=setTimeout(function(){f.classList.remove('da');cur=null;tm=setTimeout(zeig,200+Math.random()*350);},Math.max(650,1400-score*45));}
+function fertig(){on=false;clearTimeout(tm);clearInterval(iv);svg.classList.remove('spielt');F.forEach(function(f){f.classList.remove('da')});
+st.textContent=score+(score==1?' Nachbar':' Nachbarn')+' gegrüßt – schön, dass du da bist!';btn.textContent='Nochmal spielen →';btn.disabled=false;}
+F.forEach(function(f){f.addEventListener('pointerdown',function(){if(!on||!f.classList.contains('da'))return;
+score++;f.classList.remove('da');f.classList.add('gegruesst');setTimeout(function(){f.classList.remove('gegruesst')},700);
+clearTimeout(tm);cur=f;upd();tm=setTimeout(zeig,300);});});
+btn.addEventListener('click',function(){if(on)return;on=true;score=0;end=Date.now()+30000;F.forEach(function(f){f.classList.remove('klapp')});
+svg.classList.add('spielt');btn.disabled=true;btn.textContent='Tippe auf die winkenden Nachbarn!';upd();iv=setInterval(upd,250);tm=setTimeout(zeig,600);});})();
+</script>
+  <section class="block" id="verein" style="border-top:0">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Der Verein</span>
+        <h2>Wer wir sind</h2>
+        <p>Unser Birkenhof ist der Verein der Hausgemeinschaft im Birkenhof in Augsburg-Lechhausen. Das Haus steht unter Denkmalschutz. Der Verein befindet sich in Gründung und wird nach der Eintragung ins Vereinsregister „Unser Birkenhof e.V.“ heißen.</p>
+      </div>
+      <div class="ziele">
+        <article class="ziel begegnung">
+          <span class="tag">Begegnung</span>
+          <h3>Nachbarschaft leben</h3>
+          <p>Im Birkenhof wohnen viele Menschen Tür an Tür. Wir wollen, dass aus Nachbarinnen und Nachbarn Bekannte werden: dass wir die Gesichter im Haus kennen und uns grüßen. Dafür schaffen wir Gelegenheiten, bei denen man sich begegnet.</p>
+        </article>
+        <article class="ziel hof">
+          <span class="tag hof">Hof</span>
+          <h3>Den Innenhof gemeinsam gestalten</h3>
+          <p>Der Innenhof ist der Raum, den alle im Haus teilen. Wir wollen ihn gemeinsam nutzen und gestalten, damit er ein Ort wird, an dem man sich gern aufhält und trifft.</p>
+        </article>
+        <article class="ziel haus">
+          <span class="tag haus">Haus</span>
+          <h3>Das Haus weiterdenken</h3>
+          <p>Der Birkenhof steht unter Denkmalschutz. Wir wollen das Haus erhalten und zugleich innovativ weiterentwickeln, mit Ideen aus der Hausgemeinschaft und im Rahmen des Denkmalschutzes.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="termine">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Was ansteht</span>
+        <h2>Termine</h2>
+      </div>
+      <!--
+        TERMINE EINTRAGEN
+        Pro Termin dieses Muster in die <ul class="events"> kopieren und ausfüllen.
+        data-datum im Format JJJJ-MM-TT: Am Tag nach dem Termin verschwindet er automatisch.
+        Sind keine Termine mehr übrig, erscheint der Hinweis „Derzeit sind keine Termine eingetragen“.
+
+        <li class="event" data-datum="2026-06-12">
+          <div class="date">12.06.<span>Samstag</span></div>
+          <div class="body">
+            <span class="tag">Begegnung</span>   (oder: class="tag hof" / class="tag haus")
+            <h3>Titel des Termins</h3>
+            <p>Ein bis zwei Sätze, worum es geht.</p>
+            <dl>
+              <div><dt>Uhrzeit</dt><dd>15:00 Uhr</dd></div>
+              <div><dt>Ort</dt><dd>Innenhof</dd></div>
+            </dl>
+          </div>
+        </li>
+      -->
+      <ul class="events">
+        <li class="event" data-datum="2026-11-08">
+          <div class="date">08.11.<span>Sonntag</span></div>
+          <div class="body">
+            <span class="tag">Begegnung</span>
+            <h3>Vereinstreffen: Get&#8209;together im Wirtshaus</h3>
+            <p>Wir laden euch zu einem gemütlichen Abend ein. Gegen 18:00 Uhr berichten wir über die Entwicklungen rund um den Verein. Für Mitglieder und Interessierte, natürlich unverbindlich.</p>
+            <dl>
+              <div><dt>Uhrzeit</dt><dd>ab 17:00 Uhr</dd></div>
+              <div><dt>Ort</dt><dd>Wirtshaus am Lech</dd></div>
+            </dl>
+          </div>
+        </li>
+      </ul>
+      <div class="empty" hidden>
+        <h3>Derzeit sind keine Termine eingetragen.</h3>
+        <p>Neue Termine erscheinen hier. Fragen und Ideen gern an <a href="mailto:hallo@unser-birkenhof.de">hallo@unser-birkenhof.de</a>.</p>
+      </div>
+      <script>
+      (function(){
+        var heute=new Date();heute.setHours(0,0,0,0);
+        document.querySelectorAll('.events .event[data-datum]').forEach(function(li){
+          var d=new Date(li.getAttribute('data-datum')+'T00:00:00');
+          if(!isNaN(d)&&d<heute)li.remove();
+        });
+        if(!document.querySelector('.events .event'))document.querySelector('.empty').hidden=false;
+      })();
+      </script>
+    </div>
+  </section>
+
+  <section class="block" id="mitglied">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Mitmachen</span>
+        <h2>Mitglied werden</h2>
+        <p>Werde Mitglied im Verein und gestalte das Leben im Birkenhof mit. Mitglied werden kann jede Person, die im Birkenhof wohnt oder die Ziele des Vereins unterstützt.</p>
+      </div>
+      <div class="mitglied">
+        <ul class="preise">
+          <li><span>Erwachsene</span><strong>20&nbsp;€ <span class="hinweis">pro Jahr</span></strong></li>
+          <li><span>Jugendliche (14–18 Jahre)</span><strong>10&nbsp;€ <span class="hinweis">pro Jahr</span></strong></li>
+          <li><span>Kinder bis 14 Jahre</span><strong>beitragsfrei</strong></li>
+        </ul>
+        <div class="cta">
+          <a class="button" href="https://formular.vereinsplaner.com/b3fb1bd7-8fcc-4609-85f3-718c0fed277a" target="_blank" rel="noopener">Zum Mitgliedsantrag <span aria-hidden="true">→</span></a>
+          <p class="hinweis">Der Antrag öffnet sich in einem neuen Fenster beim Vereinsplaner, unserer Online-Vereinsverwaltung.</p>
+          <div class="dokumente">
+            <span class="label">Bitte vor dem Antrag lesen</span>
+            <ul>
+              <li><a href="satzung.html">Satzung lesen</a><a class="hinweis" href="dokumente/satzung-unser-birkenhof.pdf" target="_blank" rel="noopener">PDF</a></li>
+              <li><a href="beitragsordnung.html">Beitragsordnung lesen</a><a class="hinweis" href="dokumente/beitragsordnung-unser-birkenhof.pdf" target="_blank" rel="noopener">PDF</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block rot" id="kontakt">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Kontakt</span>
+        <h2>Schreib uns</h2>
+      </div>
+      <div class="kontakt">
+        <div>
+          <span class="label">E-Mail</span>
+          <a class="mail" href="mailto:hallo@unser-birkenhof.de">hallo@unser-birkenhof.de</a>
+        </div>
+        <div>
+          <span class="label">Vorstand</span>
+          <ul class="people">
+            <li>Dr. Barbara Löffler <span>Vorsitzende</span></li>
+            <li>Christian Betz <span>stellv. Vorsitzender</span></li>
+            <li>Marcel Rößner <span>Schatzmeister</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer>
+  <div class="wrap">
+    <span>Unser Birkenhof e.V. i. G. · www.unser-birkenhof.de</span>
+    <span>Made with <span class="heart" aria-label="Liebe">♥</span> in Augsburg</span>
+    <span><a href="satzung.html">Satzung</a> · <a href="beitragsordnung.html">Beitragsordnung</a> · <a href="design.html">Gestaltung</a> · <a href="impressum.html#impressum">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+UNSER BIRKENHOF e.V. – FARBEN
+CMYK-Werte: umgerechnet für gestrichenes Papier (FOGRA39). Bei Druckaufträgen bitte HEX- oder RGB-Wert mitschicken und einen Proof ansehen.
+
+HAUPTFARBEN
+Putzgelb       HEX #F5E4B0   RGB 245 228 176   CMYK 5 9 39 0     Die Hausfarbe. Große Flächen: Flyer, Plakate, Social-Media-Hintergründe.
+Ladengrün      HEX #2F6B45   RGB 47 107 69     CMYK 84 30 85 33  Logo, Buttons, Links, Bereich „Hof“.
+Holzbraun      HEX #6E5038   RGB 110 80 56     CMYK 48 62 83 42  Bereich „Haus“, wichtige Hinweise. Sparsam.
+Schwarzgrün    HEX #1F2620   RGB 31 38 32      CMYK 75 53 70 93  Text. Statt reinem Schwarz.
+
+HINTERGRÜNDE UND HELLE TÖNE
+Kalkweiß       HEX #F8F4E9   RGB 248 244 233   CMYK 4 4 11 0     Seitenhintergrund statt reinem Weiß.
+Papierweiß     HEX #FFFCF6   RGB 255 252 246   CMYK 1 1 5 0      Karten und Kästen auf Kalkweiß.
+Putz hell      HEX #F9F0D6   RGB 249 240 214   CMYK 4 5 21 0     Infokästen, Bereich „Begegnung“.
+Laden hell     HEX #DCEBDC   RGB 220 235 220   CMYK 15 5 17 0    Hinterlegung Bereich „Hof“.
+Holz hell      HEX #F8E0D3   RGB 248 224 211   CMYK 5 15 17 0    Hinterlegung Bereich „Haus“.
+Grau           HEX #586056   RGB 88 96 86      CMYK 65 48 60 36  Nebentext, Datum, Bildunterschrift.
+Linie          HEX #E2D8BF   RGB 226 216 191   CMYK 15 14 29 0   Feine Trennlinien. Nie für Text.
+
+LESBARE KOMBINATIONEN (Text auf Fläche)
+Schwarzgrün auf Putzgelb, Kalkweiß, Papierweiß, allen hellen Tönen
+Ladengrün auf Putzgelb, Kalkweiß, Papierweiß
+Weiß/Kalkweiß auf Ladengrün oder Holzbraun
+Holzbraun auf Kalkweiß, Putzgelb, Holz hell
