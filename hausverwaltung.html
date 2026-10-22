@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finde die Hausverwaltung – unser Birkenhof e.V.</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:"Unbounded";src:url("fonts/unbounded.woff2") format("woff2");font-weight:200 900;font-display:swap}
+@font-face{font-family:"Onest";src:url("fonts/onest.woff2") format("woff2");font-weight:100 900;font-display:swap}
+:root{color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f8f4e9;--surface:#fffcf6;--ink:#1f2620;--muted:#586056;--line:#e2d8bf;--putz:#f5e4b0;
+  --laden:#2f6b45;--on-laden:#ffffff;--herz:#8e1f2f;
+  --fd:"Unbounded","Arial Black",sans-serif;--ft:"Onest","Helvetica Neue",Arial,sans-serif;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--ft)}
+main{max-width:960px;margin:0 auto;padding:28px 16px 48px}
+h1{font:600 clamp(24px,4vw,36px)/1.1 var(--fd);letter-spacing:-.01em;margin:0 0 8px}
+.lead{margin:0 0 20px;color:var(--muted);max-width:62ch}
+.hud{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:flex-end;margin:0 0 12px}
+.hud div{min-width:56px}
+#hSpur{min-width:5.2em}
+.k{display:block;font:600 11px/1 var(--ft);letter-spacing:.06em;color:var(--muted)}
+.v{display:block;font:600 20px/1.3 var(--fd)}
+.zeit{flex:1 1 220px}
+.bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:7px}
+.bar i{display:block;height:100%;width:100%;background:var(--laden)}
+.bar.knapp i{background:var(--herz)}
+.stage{position:relative;border-radius:12px;overflow:hidden;background:#1f2620;box-shadow:0 0 0 1px var(--line)}
+canvas{display:block;width:100%;height:auto}
+.overlay{position:absolute;inset:0;display:grid;place-items:center;padding:14px;background:rgba(20,26,21,.7)}
+.overlay[hidden]{display:none}
+.card{background:#fffcf6;color:#1f2620;border-radius:12px;padding:22px 24px;width:100%;max-width:460px;max-height:100%;overflow:auto}
+.card h2{font:600 clamp(20px,3vw,26px)/1.15 var(--fd);margin:0 0 10px;letter-spacing:-.01em}
+.card p{margin:0 0 10px}
+.card .zitat{font-size:18px;font-weight:500}
+.card ul{margin:0 0 14px;padding-left:20px}
+.card li{margin:0 0 4px}
+.gross{font:600 28px/1.2 var(--fd);margin:4px 0 12px}
+.btn{font:600 15px/1 var(--ft);background:#2f6b45;color:#fff;border:0;border-radius:8px;padding:13px 18px;cursor:pointer}
+.btn:hover{background:#285c3b}
+.btn:focus-visible,.name input:focus-visible{outline:none;box-shadow:0 0 0 2px #fffcf6,0 0 0 4px #2f6b45}
+.leise{font-size:13px;color:#586056;margin-top:10px}
+.name{display:flex;gap:8px;margin:6px 0 14px}
+.name input{flex:1;min-width:0;font:500 16px var(--ft);padding:10px 12px;border:1px solid #cfc4a6;border-radius:8px;background:#fff;color:#1f2620}
+.top{margin:6px 0 4px;padding:0;list-style:none;counter-reset:p;font-size:14px}
+.top li{display:flex;gap:10px;padding:4px 0;border-bottom:1px solid #eee5cc;counter-increment:p}
+.top li::before{content:counter(p);width:20px;color:#586056}
+.top li span:first-child{flex:1}
+.top li b{font-weight:600}
+.top li.neu{color:#2f6b45;font-weight:600}
+.toast{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);max-width:88%;background:#f5e4b0;color:#1f2620;font:500 15px/1.35 var(--ft);padding:9px 14px;border-radius:8px;opacity:0;transition:opacity .2s;pointer-events:none;text-align:center}
+.toast.an{opacity:1}
+.hinweis{font-size:14px;color:var(--muted);margin:10px 0 0}
+.pad{display:none;grid-template-columns:repeat(3,58px);grid-template-rows:repeat(2,58px);gap:6px;justify-content:center;margin:14px auto 0;touch-action:none;user-select:none;-webkit-user-select:none}
+.pad button{font:600 22px var(--ft);border:0;border-radius:10px;background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.pad .u{grid-column:2;grid-row:1}.pad .l{grid-column:1;grid-row:2}.pad .d{grid-column:2;grid-row:2}.pad .r{grid-column:3;grid-row:2}
+@media (pointer:coarse){.pad{display:grid}}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+.top{background:var(--bg);border-bottom:1px solid var(--line)}
+.top .in{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:flex-end;gap:12px;text-decoration:none;color:var(--ink)}
+.brand svg{color:var(--laden);flex:none}
+.wm{font-family:var(--fd);font-weight:600;font-size:22px;line-height:1;letter-spacing:-.01em}
+.wm i{display:block;font:normal 600 9px/1 var(--ft);letter-spacing:.02em;margin:0 0 4px 1px}
+.top nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
+.top nav a:hover{color:var(--laden);text-decoration:underline}
+.top a:focus-visible,.fuss a:focus-visible{outline:none;box-shadow:0 0 0 2px #f8f4e9,0 0 0 4px #2f6b45;border-radius:3px}
+.fuss{border-top:1px solid var(--line);color:var(--muted)}
+.fuss .in{max-width:1080px;margin:0 auto;padding:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px}
+.fuss a{color:var(--muted)}
+.heart{color:#8e1f2f}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="in">
+    <a class="brand" href="index.html" aria-label="Unser Birkenhof, zur Startseite">
+      <svg viewBox="0 0 64 64" width="36" height="36" aria-hidden="true"><mask id="bm"><rect width="64" height="64" fill="#fff"/><rect x="14" y="14" width="36" height="36" fill="#000"/><rect x="26" y="49" width="12" height="16" fill="#000"/><rect x="26" y="-1" width="12" height="16" fill="#000"/><circle cx="32" cy="32" r="8" fill="#fff"/></mask><rect width="64" height="64" fill="currentColor" mask="url(#bm)"/></svg>
+      <span class="wm"><i>unser</i>Birkenhof</span>
+    </a>
+    <nav aria-label="Navigation"><a href="index.html">Zur Startseite</a></nav>
+  </div>
+</header>
+<main>
+  <h1>Finde die Hausverwaltung</h1>
+  <p class="lead">Du bist den Spuren gefolgt. Irgendwo im Birkenhof ist die Hausverwaltung unterwegs. Erwisch sie, bevor die Sprechzeit vorbei ist. Mit jedem Level wird sie flinker.</p>
+
+  <div class="hud" aria-live="off">
+    <div><span class="k">SCORE</span><span class="v" id="hScore">0</span></div>
+    <div><span class="k">BEST</span><span class="v" id="hBest">0</span></div>
+    <div><span class="k">LEVEL</span><span class="v" id="hLevel">1</span></div>
+    <div><span class="k">SPÜRSINN</span><span class="v" id="hSpur">–</span></div>
+    <div class="zeit"><span class="k" id="hZeit">SPRECHZEIT</span><div class="bar" id="bar"><i></i></div></div>
+  </div>
+
+  <div class="stage">
+    <canvas id="spiel" role="img" aria-label="Lageplan des Birkenhofs mit Innenhof, Treppenhäusern, Keller, Waschküche, Garten und Laden"></canvas>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="overlay" id="ov"><div class="card" id="card"></div></div>
+  </div>
+
+  <div class="pad" aria-label="Steuerkreuz">
+    <button class="u" data-d="u" aria-label="Hoch">↑</button>
+    <button class="l" data-d="l" aria-label="Links">←</button>
+    <button class="d" data-d="d" aria-label="Runter">↓</button>
+    <button class="r" data-d="r" aria-label="Rechts">→</button>
+  </div>
+  <p class="hinweis">Steuerung: Pfeiltasten oder WASD. Mit P pausierst du.</p>
+</main>
+<footer class="fuss">
+  <div class="in">
+    <span>Unser Birkenhof e.V. i. G. · www.unser-birkenhof.de</span>
+    <span>Made with <span class="heart" aria-label="Liebe">♥</span> in Augsburg</span>
+    <span><a href="impressum.html#impressum">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var T=32,W=28,H=18,CW=W*T,CH=H*T;
+var cv=document.getElementById('spiel'),ctx=cv.getContext('2d');
+var dpr=Math.min(2,window.devicePixelRatio||1);
+function mkCanvas(){var c=document.createElement('canvas');c.width=CW*dpr;c.height=CH*dpr;var x=c.getContext('2d');x.setTransform(dpr,0,0,dpr,0,0);return [c,x];}
+cv.width=CW*dpr;cv.height=CH*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+var F=mkCanvas(),fog=F[0],fx=F[1];
+var B=mkCanvas(),bg=B[0],bx=B[1];
+
+/* ---------- Lageplan ---------- */
+var ROOMS=[
+ {n:'Treppenhaus A',loc:'im Treppenhaus A',x:1,y:1,w:6,h:4,f:'#fffcf6'},
+ {n:'Laden',loc:'im Laden',x:8,y:1,w:11,h:4,f:'#f9f0d6'},
+ {n:'Treppenhaus B',loc:'im Treppenhaus B',x:20,y:1,w:7,h:4,f:'#fffcf6'},
+ {n:'Fahrradkeller',loc:'im Fahrradkeller',x:1,y:6,w:6,h:5,f:'#ebe6da'},
+ {n:'Innenhof',loc:'im Innenhof',x:8,y:6,w:12,h:8,f:'#efe8d4'},
+ {n:'Waschküche',loc:'in der Waschküche',x:21,y:6,w:6,h:5,f:'#e6edee'},
+ {n:'Garten',loc:'im Garten',x:1,y:12,w:6,h:5,f:'#dcebdc'},
+ {n:'Treppenhaus C',loc:'im Treppenhaus C',x:21,y:12,w:6,h:5,f:'#fffcf6'},
+ {n:'Tor',loc:'in der Tordurchfahrt',x:12,y:15,w:4,h:2,f:'#e9e2cf'},
+ {n:'Müll',loc:'am Müllplatz',x:8,y:15,w:3,h:2,f:'#e4e0d4'}
+];
+var g=[],room=[],x,y;
+for(y=0;y<H;y++){g.push([]);room.push([]);for(x=0;x<W;x++){g[y].push('#');room[y].push(-1);}}
+ROOMS.forEach(function(r,i){for(var yy=r.y;yy<r.y+r.h;yy++)for(var xx=r.x;xx<r.x+r.w;xx++){g[yy][xx]='.';room[yy][xx]=i;}});
+for(x=12;x<=15;x++){g[14][x]='.';room[14][x]=8;}
+var DOORS=[[7,3],[19,3],[3,5],[13,5],[24,5],[7,8],[20,8],[3,11],[24,11],[7,13],[20,12],[11,16],[7,16]];
+DOORS.forEach(function(d){g[d[1]][d[0]]='.';room[d[1]][d[0]]=-2;});
+var OB=[[13,9,'B'],[14,9,'B'],[13,10,'B'],[14,10,'B'],[10,7,'K'],[17,12,'K'],
+ [2,7,'R'],[3,7,'R'],[4,7,'R'],[2,9,'R'],[3,9,'R'],[4,9,'R'],
+ [22,7,'M'],[23,7,'M'],[25,9,'M'],[26,9,'M'],
+ [10,2,'S'],[10,3,'S'],[16,2,'S'],[16,3,'S'],
+ [2,14,'P'],[3,14,'P'],[5,15,'P'],[8,15,'T'],[9,15,'T']];
+OB.forEach(function(o){g[o[1]][o[0]]=o[2];});
+var N4=[[1,0],[-1,0],[0,1],[0,-1]];
+function pass(x,y){return x>=0&&y>=0&&x<W&&y<H&&g[y][x]==='.';}
+function roomIdx(x,y){var r=room[y][x];if(r>=0)return r;for(var i=0;i<4;i++){var a=x+N4[i][0],b=y+N4[i][1];if(a>=0&&b>=0&&a<W&&b<H&&room[b][a]>=0)return room[b][a];}return 4;}
+function bfs(sx,sy){var d=new Int16Array(W*H).fill(-1),q=[sx+sy*W];d[q[0]]=0;for(var i=0;i<q.length;i++){var c=q[i],cx=c%W,cy=(c/W)|0;for(var k=0;k<4;k++){var nx=cx+N4[k][0],ny=cy+N4[k][1];if(pass(nx,ny)&&d[nx+ny*W]<0){d[nx+ny*W]=d[c]+1;q.push(nx+ny*W);}}}return d;}
+var FLOOR=[];for(y=0;y<H;y++)for(x=0;x<W;x++)if(pass(x,y))FLOOR.push([x,y]);
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+
+function rr(c,x,y,w,h,r){c.beginPath();if(c.roundRect)c.roundRect(x,y,w,h,r);else c.rect(x,y,w,h);}
+function drawBg(){
+ var c=bx;c.fillStyle='#1f2620';c.fillRect(0,0,CW,CH);
+ for(var y=0;y<H;y++)for(var x=0;x<W;x++){
+  if(g[y][x]==='#')continue;
+  var ri=roomIdx(x,y);c.fillStyle=ROOMS[ri].f;c.fillRect(x*T,y*T,T,T);
+  if(ri===4||ri===8){c.fillStyle='rgba(110,80,56,.13)';for(var i=0;i<4;i++)for(var j=0;j<4;j++){c.beginPath();c.arc(x*T+4+i*8+(j%2)*4,y*T+4+j*8,1.3,0,7);c.fill();}}
+  if(ri===6){c.strokeStyle='rgba(47,107,69,.25)';c.lineWidth=1;c.beginPath();c.moveTo(x*T+8,y*T+20);c.lineTo(x*T+10,y*T+14);c.moveTo(x*T+22,y*T+12);c.lineTo(x*T+24,y*T+6);c.stroke();}
+ }
+ OB.forEach(function(o){var px=o[0]*T,py=o[1]*T,t=o[2];
+  if(t==='R'){c.fillStyle='#b8b2a2';c.fillRect(px+3,py+13,T-6,6);c.strokeStyle='#1f2620';c.lineWidth=1.5;c.beginPath();c.arc(px+9,py+16,6,0,7);c.stroke();c.beginPath();c.arc(px+23,py+16,6,0,7);c.stroke();}
+  else if(t==='M'){c.fillStyle='#ffffff';rr(c,px+3,py+3,T-6,T-6,4);c.fill();c.strokeStyle='#1f2620';c.lineWidth=1.5;c.stroke();c.beginPath();c.arc(px+16,py+17,7,0,7);c.stroke();c.fillStyle='#cfe3e8';c.fill();}
+  else if(t==='S'){c.fillStyle='#6e5038';c.fillRect(px+5,py+2,T-10,T-4);c.fillStyle='#f5e4b0';for(var k=0;k<3;k++)c.fillRect(px+8,py+6+k*8,T-16,3);}
+  else if(t==='P'){c.fillStyle='#8a6a50';rr(c,px+2,py+2,T-4,T-4,5);c.fill();c.fillStyle='#4f8a5d';for(var m=0;m<4;m++){c.beginPath();c.arc(px+9+(m%2)*14,py+9+((m/2)|0)*14,4.5,0,7);c.fill();}}
+  else if(t==='K'){c.fillStyle='#6e5038';c.fillRect(px+3,py+11,T-6,10);c.fillStyle='#8a6a50';c.fillRect(px+3,py+11,T-6,3);}
+  else if(t==='T'){c.fillStyle='#2f6b45';rr(c,px+4,py+4,T-8,T-8,4);c.fill();c.fillStyle='#1f2620';c.fillRect(px+4,py+11,T-8,2);}
+ });
+ // Birke im Innenhof
+ var bxp=14*T,byp=10*T;
+ c.fillStyle='rgba(31,38,32,.15)';c.beginPath();c.ellipse(bxp+4,byp+6,30,26,0,0,7);c.fill();
+ c.fillStyle='#2f6b45';c.beginPath();c.arc(bxp,byp,29,0,7);c.fill();
+ c.fillStyle='#4f8a5d';[[-10,-9,12],[9,-6,10],[-4,10,11],[12,10,8]].forEach(function(b){c.beginPath();c.arc(bxp+b[0],byp+b[1],b[2],0,7);c.fill();});
+ c.fillStyle='#fffcf6';c.beginPath();c.arc(bxp,byp,4,0,7);c.fill();c.fillStyle='#1f2620';c.fillRect(bxp-3,byp-1,3,1.5);
+}
+
+/* ---------- Figuren ---------- */
+function figur(c,px,py,body,head,extra){
+ c.fillStyle='rgba(31,38,32,.25)';c.beginPath();c.ellipse(px,py+12,9,3.5,0,0,7);c.fill();
+ c.fillStyle=body;rr(c,px-8,py-3,16,15,6);c.fill();
+ c.fillStyle=head;c.beginPath();c.arc(px,py-9,6,0,7);c.fill();
+ if(extra)extra(c,px,py);
+}
+var LOOK={
+ spieler:function(c,px,py){figur(c,px,py,'#2f6b45','#e3b58c',function(c,px,py){c.fillStyle='#f5e4b0';c.fillRect(px-8,py-2,16,3);});},
+ hv:function(c,px,py){figur(c,px,py,'#586056','#f0cfae',function(c,px,py){c.fillStyle='#ffffff';c.beginPath();c.moveTo(px-3,py-3);c.lineTo(px,py+2);c.lineTo(px+3,py-3);c.fill();c.fillStyle='#6e5038';c.fillRect(px+6,py-1,7,11);c.fillStyle='#f5e4b0';c.fillRect(px+8,py+1,3,7);});},
+ haus:function(c,px,py){figur(c,px,py,'#4f7fa6','#c98f62',function(c,px,py){c.fillStyle='#1f2620';c.beginPath();c.arc(px,py-11,6.5,Math.PI,0);c.fill();c.fillRect(px,py-12,9,2.5);c.strokeStyle='#b8b2a2';c.lineWidth=2.5;c.beginPath();c.moveTo(px+8,py+8);c.lineTo(px+13,py);c.stroke();});},
+ nach:function(c,px,py){figur(c,px,py,'#e0b84f','#c98f62',function(c,px,py){c.fillStyle='#3e2a1e';c.beginPath();c.arc(px,py-10,6.5,Math.PI*1.05,-0.05);c.fill();});},
+ gaert:function(c,px,py){figur(c,px,py,'#8a6a50','#e3b58c',function(c,px,py){c.fillStyle='#2f6b45';c.beginPath();c.ellipse(px,py-13,10,3,0,0,7);c.fill();c.fillRect(px-5,py-19,10,6);c.strokeStyle='#4f8a5d';c.lineWidth=2.5;c.beginPath();c.arc(px-11,py+6,5,0,7);c.stroke();});},
+ ab:function(c,px,py,t){c.fillStyle='rgba(31,38,32,.25)';c.beginPath();c.ellipse(px,py+9,10,3,0,0,7);c.fill();c.fillStyle='#1f2620';rr(c,px-10,py-6,20,13,3);c.fill();c.fillStyle='#fffcf6';c.fillRect(px-6,py-3,8,3);c.fillStyle=(Math.floor(t*2)%2)?'#e05a6a':'#8e1f2f';c.beginPath();c.arc(px+6,py-1,2.4,0,7);c.fill();}
+};
+
+/* ---------- Texte ---------- */
+var FANG=['„Ihr Anliegen wurde aufgenommen. Bearbeitungszeit: 6 bis 8 Wochen.“','„Dafür bin ich eigentlich nicht zuständig.“','„Schicken Sie uns das bitte schriftlich.“','„Ich leite das gern weiter.“','„Ticket Nr. 4711 ist angelegt.“','„Das besprechen wir auf der nächsten Eigentümerversammlung.“','„Mein Kollege meldet sich bei Ihnen.“'];
+var RUF=['Keine Zeit!','Termin!','Gleich wieder da!','Bin im Gespräch!'];
+var NACH=['„Die hab ich eben {loc} gesehen.“','„Ich glaub, die ist {loc}.“','„{Loc}! Ganz sicher. Fast.“'];
+
+/* ---------- Spielzustand ---------- */
+var state='start',level=1,score=0,timeLeft=0,timeMax=1,gt=0;
+var P,HV,npcs=[],decoys=[],prints=[],pops=[];
+var revealT=0,slowT=0,freezeT=0,fleeT=0,pauseT=0,nextPause=6,lightR=3.8,hvSays=0,neuIdx=-1;
+
+function ent(x,y){return {cx:x,cy:y,tx:x,ty:y,x:x,y:y,mv:false};}
+function stepEnt(e,dt,sp){if(!e.mv)return;var dx=e.tx-e.x,dy=e.ty-e.y,d=Math.hypot(dx,dy),s=sp*dt;if(s>=d){e.x=e.tx;e.y=e.ty;e.cx=e.tx;e.cy=e.ty;e.mv=false;}else{e.x+=dx/d*s;e.y+=dy/d*s;}}
+
+function newLevel(){
+ P=ent(13,16);
+ var dP=bfs(13,16),used={};used['13,16']=1;
+ var far=FLOOR.filter(function(f){return dP[f[0]+f[1]*W]>=16;});
+ var h=pick(far);HV=ent(h[0],h[1]);HV.target=null;HV.td=null;used[h.join(',')]=1;
+ function place(rooms,minD){var opts=FLOOR.filter(function(f){return rooms.indexOf(room[f[1]][f[0]])>=0&&!used[f.join(',')]&&dP[f[0]+f[1]*W]>=minD;});var p=pick(opts);used[p.join(',')]=1;return p;}
+ npcs=[['haus','Hausmeister',[3,5]],['nach','Nachbarin',[0,2,7]],['gaert','Gärtner',[6,4]]].map(function(n){var p=place(n[2],4);return {typ:n[0],name:n[1],x:p[0],y:p[1],used:false};});
+ decoys=[];var nd=Math.min(level-1,4);
+ for(var i=0;i<nd;i++){var p=place([0,1,2,3,4,5,6,7],6);decoys.push({x:p[0],y:p[1]});}
+ prints=[];pops=[];revealT=slowT=freezeT=fleeT=pauseT=hvSays=0;nextPause=4+Math.random()*4;
+ lightR=Math.max(2.6,3.8-0.2*(level-1));
+ timeMax=timeLeft=Math.max(30,50-4*(level-1));
+ held.clear();lastDir=null;
+}
+
+/* ---------- Steuerung ---------- */
+var held=new Set(),lastDir=null;
+var DIRV={u:[0,-1],d:[0,1],l:[-1,0],r:[1,0]};
+var KEYS={arrowup:'u',w:'u',arrowdown:'d',s:'d',arrowleft:'l',a:'l',arrowright:'r',d:'r'};
+function press(d){held.add(d);lastDir=d;}
+function release(d){held.delete(d);if(lastDir===d){var a=Array.from(held);lastDir=a.length?a[a.length-1]:null;}}
+document.addEventListener('keydown',function(e){
+ if(e.target&&e.target.tagName==='INPUT')return;
+ var k=e.key.toLowerCase(),d=KEYS[k];
+ if(d){if(state==='play'){e.preventDefault();press(d);}return;}
+ if(k==='p'||k==='escape'){if(state==='play')pause();else if(state==='pause')resume();return;}
+ if(k===' '||k==='enter'){if(e.target&&e.target.tagName==='BUTTON')return;e.preventDefault();primary();}
+});
+document.addEventListener('keyup',function(e){var d=KEYS[e.key.toLowerCase()];if(d)release(d);});
+document.querySelectorAll('.pad button').forEach(function(b){var d=b.dataset.d;
+ b.addEventListener('pointerdown',function(e){e.preventDefault();if(state==='play')press(d);});
+ ['pointerup','pointerleave','pointercancel'].forEach(function(ev){b.addEventListener(ev,function(){release(d);});});
+});
+document.addEventListener('visibilitychange',function(){if(document.hidden&&state==='play')pause();});
+window.addEventListener('blur',function(){held.clear();lastDir=null;});
+
+function chooseDir(){
+ var order=[];if(lastDir&&held.has(lastDir))order.push(lastDir);held.forEach(function(d){if(order.indexOf(d)<0)order.push(d);});
+ for(var i=0;i<order.length;i++){var v=DIRV[order[i]],nx=P.cx+v[0],ny=P.cy+v[1];if(pass(nx,ny))return [nx,ny];}
+ return null;
+}
+
+/* ---------- Hausverwaltung ---------- */
+function hvStep(){
+ var opts=[],i,nx,ny;
+ if(fleeT>0){
+  var d=bfs(P.tx,P.ty),best=-1;
+  for(i=0;i<4;i++){nx=HV.cx+N4[i][0];ny=HV.cy+N4[i][1];if(!pass(nx,ny)||(nx===P.tx&&ny===P.ty))continue;var v=d[nx+ny*W];if(v>best){best=v;opts=[[nx,ny]];}else if(v===best)opts.push([nx,ny]);}
+  HV.target=null;
+ }else{
+  if(!HV.target||(HV.cx===HV.target[0]&&HV.cy===HV.target[1])){HV.target=pick(FLOOR);HV.td=bfs(HV.target[0],HV.target[1]);}
+  var cur=HV.td[HV.cx+HV.cy*W];
+  for(i=0;i<4;i++){nx=HV.cx+N4[i][0];ny=HV.cy+N4[i][1];if(pass(nx,ny)&&HV.td[nx+ny*W]===cur-1)opts.push([nx,ny]);}
+  if(!opts.length){HV.target=null;return;}
+ }
+ if(!opts.length)return;
+ var n=pick(opts);
+ prints.push({x:HV.cx+.5,y:HV.cy+.5,dx:n[0]-HV.cx,dy:n[1]-HV.cy,t:gt});
+ if(prints.length>90)prints.shift();
+ HV.tx=n[0];HV.ty=n[1];HV.mv=true;
+}
+
+/* ---------- Ablauf ---------- */
+function msg(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('an');clearTimeout(msg.t);msg.t=setTimeout(function(){el.classList.remove('an');},2800);}
+function pop(e,t,col){pops.push({x:e.x+.5,y:e.y,t:gt,txt:t,col:col||'#fffcf6'});}
+
+function update(dt){
+ gt+=dt;timeLeft-=dt;
+ if(timeLeft<=0){timeLeft=0;gameOver();return;}
+ revealT=Math.max(0,revealT-dt);slowT=Math.max(0,slowT-dt);freezeT=Math.max(0,freezeT-dt);hvSays-=dt;
+
+ if(freezeT<=0&&!P.mv){var n=chooseDir();if(n){P.tx=n[0];P.ty=n[1];P.mv=true;}}
+ stepEnt(P,dt,6.2);
+
+ var dist=Math.hypot(P.x-HV.x,P.y-HV.y);
+ var fleeR=Math.min(6,4.4+0.3*(level-1));
+ if(dist<fleeR){if(fleeT<=0&&dist<lightR&&hvSays<=0){pop(HV,pick(RUF));hvSays=4;}fleeT=1.8;}else fleeT-=dt;
+ nextPause-=dt;
+ if(pauseT>0){pauseT-=dt;if(fleeT>0&&pauseT>0.45)pauseT=0.45;}
+ else if(!HV.mv){
+  if(nextPause<=0&&fleeT<=0){pauseT=1.8;nextPause=5+Math.random()*5;if(dist<lightR)pop(HV,'*telefoniert*');}
+  else hvStep();
+ }
+ var sp=fleeT>0?Math.min(3.6+0.35*(level-1),5.6):2.2+0.2*(level-1);
+ if(slowT>0)sp*=0.45;
+ stepEnt(HV,dt,sp);
+
+ if(Math.hypot(P.x-HV.x,P.y-HV.y)<0.72){caught();return;}
+
+ npcs.forEach(function(n){
+  if(n.used||Math.hypot(P.x-n.x,P.y-n.y)>0.75)return;
+  n.used=true;freezeT=0.5;var bonus=10*level;score+=bonus;pop({x:n.x,y:n.y},'+'+bonus,'#f5e4b0');
+  var hr=ROOMS[roomIdx(HV.cx,HV.cy)];
+  if(n.typ==='haus'){revealT=4;msg('Hausmeister: „Die ist gerade '+hr.loc+'. Beeil dich!“');}
+  else if(n.typ==='nach'){var r=hr;if(Math.random()>0.7){var andere=ROOMS.filter(function(x){return x!==hr;});r=pick(andere);}var l=pick(NACH).replace('{loc}',r.loc).replace('{Loc}',r.loc.charAt(0).toUpperCase()+r.loc.slice(1));msg('Nachbarin: '+l);}
+  else{slowT=6;msg('Gärtner: „Ich halt sie mit dem Gartenschlauch auf!“');}
+ });
+ for(var i=decoys.length-1;i>=0;i--){var d=decoys[i];if(Math.hypot(P.x-d.x,P.y-d.y)<0.75){decoys.splice(i,1);freezeT=1.6;msg('Anrufbeantworter: „Bitte warten. Ihr Anruf ist uns wichtig.“');pop(d,'−1,6 s','#f5e4b0');}}
+ hud(dist);
+}
+
+function hud(dist){
+ document.getElementById('hScore').textContent=score;
+ document.getElementById('hBest').textContent=Math.max(score,best());
+ document.getElementById('hLevel').textContent=level;
+ if(dist!=null)document.getElementById('hSpur').textContent=dist<3.5?'heiß':dist<6.5?'warm':dist<10?'lauwarm':'kalt';
+ var bar=document.getElementById('bar');bar.firstElementChild.style.width=(timeLeft/timeMax*100).toFixed(1)+'%';
+ bar.classList.toggle('knapp',timeLeft<8&&state==='play');
+ document.getElementById('hZeit').textContent='SPRECHZEIT '+Math.ceil(timeLeft)+' s';
+}
+
+/* ---------- Bestenliste (nur auf diesem Gerät) ---------- */
+var KEY='birkenhof-hausverwaltung-top10';
+function loadTop(){try{var v=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(v)?v:[];}catch(e){return [];}}
+function saveTop(l){try{localStorage.setItem(KEY,JSON.stringify(l));}catch(e){}}
+function best(){var l=loadTop();return l.length?l[0].s:0;}
+function qualifies(s){var l=loadTop();return s>0&&(l.length<10||s>l[l.length-1].s);}
+function topList(){
+ var l=loadTop();if(!l.length)return null;
+ var ol=document.createElement('ol');ol.className='top';
+ l.forEach(function(e,i){var li=document.createElement('li');if(i===neuIdx)li.className='neu';var a=document.createElement('span');a.textContent=e.n;var b=document.createElement('b');b.textContent=e.s;var c=document.createElement('span');c.textContent='Lvl '+e.l;c.style.color='#586056';li.append(a,c,b);ol.append(li);});
+ return ol;
+}
+
+/* ---------- Bildschirme ---------- */
+var ov=document.getElementById('ov'),card=document.getElementById('card');
+function show(html,btnText,onBtn,extra){
+ card.innerHTML=html;
+ if(extra)extra(card);
+ if(btnText){var b=document.createElement('button');b.className='btn';b.textContent=btnText;b.onclick=onBtn;card.append(b);primary.fn=onBtn;setTimeout(function(){if(!card.querySelector('input'))b.focus({preventScroll:true});},30);}
+ ov.hidden=false;
+}
+function primary(){if(!ov.hidden&&primary.fn&&!card.querySelector('input'))primary.fn();}
+function startScreen(){
+ state='start';
+ show('<h2>Finde die Hausverwaltung</h2><p>Die Hausverwaltung ist irgendwo im Birkenhof. Du siehst nur, was deine Taschenlampe beleuchtet.</p><ul><li>Folge den frischen Fußspuren. Der Spürsinn oben verrät, wie nah du bist.</li><li>Hausmeister, Nachbarin und Gärtner helfen dir, jede Person einmal pro Level.</li><li>Ab Level 2 lauern Anrufbeantworter. Die Warteschleife kostet Zeit.</li><li>Wenn sie telefoniert, bleibt sie kurz stehen. Das ist deine Chance.</li></ul>','Spiel starten',startGame,function(c){var t=topList();if(t){var h=document.createElement('p');h.className='leise';h.textContent='Top 10 auf diesem Gerät';c.append(h,t);}});
+}
+function startGame(){score=0;level=1;neuIdx=-1;newLevel();ov.hidden=true;state='play';hud(null);}
+function caught(){
+ state='level';var gain=Math.round((100+timeLeft*5)*level);score+=gain;hud(null);
+ show('<h2>Gefunden!</h2><p class="zitat">'+pick(FANG)+'</p><p>Und schon ist sie wieder weg.</p><p class="gross">+'+gain+'</p><p class="leise">100 Punkte plus 5 pro Sekunde Restzeit, mal Level '+level+'.</p>','Weiter zu Level '+(level+1),function(){level++;newLevel();ov.hidden=true;state='play';hud(null);});
+}
+function gameOver(){
+ state='over';hud(null);
+ var q=qualifies(score);
+ show('<h2>Sprechzeit vorbei</h2><p class="zitat">„Bitte wenden Sie sich schriftlich an uns.“</p><p class="gross">'+score+' Punkte</p>',q?null:'Nochmal spielen',startGame,function(c){
+  if(q){
+   var p=document.createElement('p');p.textContent='Das reicht für die Top 10. Wie heißt du?';
+   var f=document.createElement('div');f.className='name';
+   var i=document.createElement('input');i.maxLength=16;i.placeholder='Name';i.setAttribute('aria-label','Name für die Bestenliste');
+   var b=document.createElement('button');b.className='btn';b.textContent='Eintragen';
+   function save(){var n=i.value.trim()||'Anonym';var l=loadTop();var e={n:n,s:score,l:level};l.push(e);l.sort(function(a,b){return b.s-a.s;});l=l.slice(0,10);neuIdx=l.indexOf(e);saveTop(l);hud(null);gameOverList();}
+   b.onclick=save;i.addEventListener('keydown',function(e){if(e.key==='Enter')save();});
+   f.append(i,b);c.append(p,f);setTimeout(function(){i.focus({preventScroll:true});},40);
+  }
+  var t=topList();if(t){var h=document.createElement('p');h.className='leise';h.textContent='Top 10 auf diesem Gerät';c.append(h,t);}
+ });
+}
+function gameOverList(){
+ show('<h2>Eingetragen</h2><p class="gross">'+score+' Punkte</p>','Nochmal spielen',startGame,function(c){var t=topList();if(t)c.append(t);});
+}
+function pause(){state='pause';held.clear();lastDir=null;show('<h2>Pause</h2><p>Die Hausverwaltung wartet auch nicht. Na gut, diesmal schon.</p>','Weiterspielen',resume);}
+function resume(){ov.hidden=true;state='play';}
+
+/* ---------- Zeichnen ---------- */
+function c2p(v){return (v+.5)*T;}
+function draw(now){
+ ctx.drawImage(bg,0,0,CW,CH);
+ if(!P){P=ent(13,16);}
+ // Fußspuren
+ prints.forEach(function(p){var age=gt-p.t;if(age>6)return;var a=(1-age/6)*.8,px=p.x*T,py=p.y*T,nx=-p.dy,ny=p.dx;
+  ctx.fillStyle='rgba(110,80,56,'+a.toFixed(3)+')';
+  [-1,1].forEach(function(s,k){ctx.beginPath();ctx.ellipse(px+nx*4*s+p.dx*(k?5:-3),py+ny*4*s+p.dy*(k?5:-3),2.4,3.6,Math.atan2(p.dy,p.dx)+Math.PI/2,0,7);ctx.fill();});
+ });
+ decoys.forEach(function(d){LOOK.ab(ctx,c2p(d.x),c2p(d.y),now);});
+ npcs.forEach(function(n){ctx.globalAlpha=n.used?.45:1;LOOK[n.typ](ctx,c2p(n.x),c2p(n.y));ctx.globalAlpha=1;});
+ var dist=HV?Math.hypot(P.x-HV.x,P.y-HV.y):99;
+ if(HV&&(dist<lightR*0.95||state==='level'))LOOK.hv(ctx,c2p(HV.x),c2p(HV.y));
+ LOOK.spieler(ctx,c2p(P.x),c2p(P.y));
+
+ // Nebel
+ fx.globalCompositeOperation='source-over';fx.clearRect(0,0,CW,CH);
+ fx.fillStyle='rgba(18,24,19,.8)';fx.fillRect(0,0,CW,CH);
+ fx.globalCompositeOperation='destination-out';
+ var lx=c2p(P.x),ly=c2p(P.y),R=lightR*T,gr=fx.createRadialGradient(lx,ly,R*.45,lx,ly,R);
+ gr.addColorStop(0,'rgba(0,0,0,1)');gr.addColorStop(1,'rgba(0,0,0,0)');fx.fillStyle=gr;fx.beginPath();fx.arc(lx,ly,R,0,7);fx.fill();
+ if(state==='start'){fx.fillStyle='rgba(0,0,0,.6)';fx.fillRect(0,0,CW,CH);}
+ fx.globalCompositeOperation='source-over';
+ ctx.drawImage(fog,0,0,CW,CH);
+
+ // Raumnamen
+ ctx.font='600 11px Onest, Helvetica Neue, Arial, sans-serif';ctx.textBaseline='middle';
+ ROOMS.forEach(function(r){var w=ctx.measureText(r.n).width+12,px=r.x*T+4,py=r.y*T+4;ctx.fillStyle='rgba(31,38,32,.6)';rr(ctx,px,py,w,18,9);ctx.fill();ctx.fillStyle='#f8f4e9';ctx.fillText(r.n,px+6,py+9.5);});
+
+ // Hinweis vom Hausmeister
+ if(revealT>0&&HV){var hx=c2p(HV.x),hy=c2p(HV.y),k=(now*2)%1;
+  ctx.strokeStyle='rgba(245,228,176,'+(1-k).toFixed(2)+')';ctx.lineWidth=3;ctx.beginPath();ctx.arc(hx,hy,14+k*22,0,7);ctx.stroke();
+  LOOK.hv(ctx,hx,hy);label(hx,hy-26,'Hausverwaltung','#f5e4b0');}
+ // Namensschilder in der Nähe
+ npcs.forEach(function(n){if(!n.used&&Math.hypot(P.x-n.x,P.y-n.y)<lightR)label(c2p(n.x),c2p(n.y)-28,n.name,'#fffcf6');});
+ decoys.forEach(function(d){if(Math.hypot(P.x-d.x,P.y-d.y)<lightR)label(c2p(d.x),c2p(d.y)-18,'Anrufbeantworter','#fffcf6');});
+ if(slowT>0&&HV&&dist<lightR)label(c2p(HV.x),c2p(HV.y)+24,'im Gartenschlauch verheddert','#f5e4b0');
+ // Einblendungen
+ pops=pops.filter(function(p){return gt-p.t<1.4;});
+ pops.forEach(function(p){var a=1-(gt-p.t)/1.4;ctx.globalAlpha=a;label(p.x*T,p.y*T-18-(gt-p.t)*22,p.txt,p.col);ctx.globalAlpha=1;});
+}
+function label(x,y,t,col){ctx.font='600 12px Onest, Helvetica Neue, Arial, sans-serif';ctx.textBaseline='middle';var w=ctx.measureText(t).width+12;ctx.fillStyle='rgba(31,38,32,.85)';rr(ctx,x-w/2,y-10,w,20,10);ctx.fill();ctx.fillStyle=col;ctx.textAlign='center';ctx.fillText(t,x,y+.5);ctx.textAlign='start';}
+
+var last=performance.now();
+function frame(t){var dt=Math.min(.05,(t-last)/1000);last=t;if(state==='play')update(dt);draw(t/1000);requestAnimationFrame(frame);}
+
+drawBg();
+newLevel();hud(null);document.getElementById('hSpur').textContent='–';
+startScreen();
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
