@@ -300,7 +300,7 @@ f.addEventListener('animationend',function(e){if(e.target.classList.contains('ld
 (function(){var svg=document.querySelector('.hero-art'),btn=document.querySelector('.spiel-start'),box=document.querySelector('.bestenliste');if(!svg||!btn||!box)return;
 var NS='http://www.w3.org/2000/svg',st=svg.querySelector('.spiel-status'),F=[].slice.call(svg.querySelectorAll('.fenster'));
 var liste=box.querySelector('.hs-liste'),form=box.querySelector('.eintrag'),inp=form.querySelector('input'),hin=form.querySelector('.hs-hinweis'),sub=form.querySelector('button');
-var on=false,pts=0,gruss=0,level=1,cur=null,seit=0,t0=0,dauerSpiel=0,tm,ov=null,offen=null,neuId=null,top=[],LKEY='birkenhof-top10',NKEY='birkenhof-vorname',API=svg.closest('[data-rangliste]')?svg.closest('[data-rangliste]').getAttribute('data-rangliste'):'',modus='lokal';
+var on=false,pts=0,gruss=0,level=1,cur=null,seit=0,t0=0,dauerSpiel=0,tm,ov=null,offen=null,neuId=null,top=[],LKEY='birkenhof-top10',NKEY='birkenhof-vorname',API=svg.closest('[data-rangliste]')?svg.closest('[data-rangliste]').getAttribute('data-rangliste'):'',modus='lokal',gespielt=false;
 function el(n,a,t){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e}
 var hudL=el('text',{'class':'hud',x:8,y:24}),hudR=el('text',{'class':'hud',x:552,y:24,'text-anchor':'end'});svg.appendChild(hudL);svg.appendChild(hudR);
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
@@ -310,7 +310,7 @@ function sauber(v){return String(v||'').replace(/[^\p{L}\p{M}\- ']/gu,'').replac
 function pad(n){return('000000'+n).slice(-6)}
 function best(){return Math.max(top.length?top[0].score:0,pts)}
 function hud(){var z=on||pts>0;hudL.textContent=z?'SCORE '+pad(pts):'';hudR.textContent=z||top.length?'BEST '+pad(best()):'';}
-function render(){liste.textContent='';box.hidden=!top.length&&form.hidden&&!ov;
+function render(){liste.textContent='';box.hidden=!gespielt;
 if(!top.length){var l=document.createElement('li');l.className='leer';l.textContent='Noch keine Einträge. Sei die oder der Erste!';liste.appendChild(l);return}
 top.forEach(function(x,i){var li=document.createElement('li'),r=document.createElement('span'),n=document.createElement('span'),p=document.createElement('strong');
 r.className='rang';r.textContent=(i+1)+'.';n.textContent=sauber(x.name)||'Anonym';p.textContent=pad(x.score);li.appendChild(r);li.appendChild(n);li.appendChild(p);if(neuId&&x.name===neuId.name&&x.score===neuId.score)li.className='neu';liste.appendChild(li)});}
@@ -319,7 +319,7 @@ function zeig(){if(!on)return;var f;do{f=F[Math.floor(Math.random()*F.length)]}w
 tm=setTimeout(function(){if(on)fertig(f)},dauer());}
 function plus(f,t,c){var b=f.getBBox(),x=el('text',{'class':c||'plus',x:b.x+b.width/2,y:b.y+4,'text-anchor':'middle'},t);svg.appendChild(x);setTimeout(function(){x.remove()},900)}
 function meldung(t){st.textContent=t;st.classList.remove('blink');void st.getBBox();st.classList.add('blink')}
-function fertig(f){on=false;dauerSpiel=Date.now()-t0;clearTimeout(tm);svg.classList.remove('spielt');F.forEach(function(x){x.classList.remove('da')});
+function fertig(f){on=false;gespielt=true;dauerSpiel=Date.now()-t0;clearTimeout(tm);svg.classList.remove('spielt');F.forEach(function(x){x.classList.remove('da')});
 ov=el('g',{'class':'gameover'});ov.appendChild(el('rect',{x:0,y:34,width:560,height:372}));
 ov.appendChild(el('text',{'class':'go1',x:280,y:170,'text-anchor':'middle'},'GAME OVER'));
 ov.appendChild(el('text',{'class':'go2',x:280,y:206,'text-anchor':'middle'},'Verpasst! '+gruss+(gruss==1?' Nachbar':' Nachbarn')+' gegrüßt'));
@@ -334,7 +334,7 @@ var rt=Date.now()-seit,n=(10+Math.round(10*Math.max(0,1-rt/dauer())))*level;pts+
 f.classList.remove('da');f.classList.add('gegruesst');setTimeout(function(){f.classList.remove('gegruesst')},700);plus(f,'+'+n);
 if(gruss%5==0){level++;meldung('LEVEL '+level)}
 clearTimeout(tm);cur=f;hud();tm=setTimeout(zeig,Math.max(120,320*Math.pow(.92,level-1)));});});
-btn.addEventListener('click',function(){if(on)return;if(ov){ov.remove();ov=null}on=true;pts=0;gruss=0;level=1;t0=Date.now();form.hidden=true;offen=null;render();
+btn.addEventListener('click',function(){if(on)return;if(ov){ov.remove();ov=null}on=true;pts=0;gruss=0;level=1;t0=Date.now();form.hidden=true;offen=null;render();laden_();
 F.forEach(function(f){f.classList.remove('klapp')});svg.classList.add('spielt');btn.disabled=true;
 requestAnimationFrame(function(){var r=svg.getBoundingClientRect();if(r.bottom>innerHeight)svg.scrollIntoView({block:'end',behavior:'smooth'})});
 btn.textContent='Grüß alle, keinen verpassen!';hud();meldung('LEVEL 1');tm=setTimeout(zeig,700);});
@@ -348,7 +348,7 @@ fetch(API,{method:'POST',body:JSON.stringify({name:name,score:o.score,gruss:o.gr
 if(d&&d.ok){modus='online';top=d.top;neuId={name:name,score:o.score};offen=null;form.hidden=true;render();hud();}
 else{sub.disabled=false;hin.textContent=d&&d.fehler==='zuviel'?'Gerade sind sehr viele Einträge unterwegs. Bitte gleich nochmal versuchen.':'Das hat leider nicht geklappt.'}
 }).catch(function(){sub.disabled=false;hin.textContent='Keine Verbindung. Bitte nochmal versuchen.'});});
-top=API?[]:laden();render();hud();laden_();
+top=API?[]:laden();render();hud();
 })();
 </script>
   <section class="block" id="verein" style="border-top:0">
