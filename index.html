@@ -267,7 +267,7 @@ footer a{color:var(--ink-muted)}
 </header>
 
 <main>
-  <section class="hero" id="start">
+  <section class="hero" id="start" data-rangliste="https://script.google.com/macros/s/AKfycbweJ_LfFCi41JRaXAz7zWqYAsupqXPptdL88kC8eYlPydNN8wUZKtgUgCfiW_7a0PPyXg/exec">
     <div class="wrap">
       <div class="hero-text">
         <span class="label">Hausgemeinschaft in Augsburg-Lechhausen · Verein in Gründung</span>
@@ -278,9 +278,10 @@ footer a{color:var(--ink-muted)}
           <form class="eintrag" hidden>
             <label for="hs-name">Neuer Highscore! Trag dich in die Bestenliste ein.</label>
             <div class="zeile"><input id="hs-name" name="name" maxlength="15" autocomplete="given-name" placeholder="Dein Name"><button class="button" type="submit">Eintragen</button></div>
+            <p class="hinweis">Dein Name erscheint öffentlich in der Bestenliste. Ein Spitzname geht auch. <a href="impressum.html#spiel">Datenschutz</a></p>
             <p class="hs-hinweis hinweis" aria-live="polite"></p>
           </form>
-          <span class="label">Bestenliste · Top 10 auf diesem Gerät</span>
+          <span class="label">Bestenliste · Top 10</span>
           <ol class="hs-liste"></ol>
         </div>
       </div>
@@ -299,7 +300,7 @@ f.addEventListener('animationend',function(e){if(e.target.classList.contains('ld
 (function(){var svg=document.querySelector('.hero-art'),btn=document.querySelector('.spiel-start'),box=document.querySelector('.bestenliste');if(!svg||!btn||!box)return;
 var NS='http://www.w3.org/2000/svg',st=svg.querySelector('.spiel-status'),F=[].slice.call(svg.querySelectorAll('.fenster'));
 var liste=box.querySelector('.hs-liste'),form=box.querySelector('.eintrag'),inp=form.querySelector('input'),hin=form.querySelector('.hs-hinweis'),sub=form.querySelector('button');
-var on=false,pts=0,gruss=0,level=1,cur=null,seit=0,tm,ov=null,offen=0,neuId=null,top=[],LKEY='birkenhof-top10',NKEY='birkenhof-vorname';
+var on=false,pts=0,gruss=0,level=1,cur=null,seit=0,t0=0,dauerSpiel=0,tm,ov=null,offen=null,neuId=null,top=[],LKEY='birkenhof-top10',NKEY='birkenhof-vorname',API=svg.closest('[data-rangliste]')?svg.closest('[data-rangliste]').getAttribute('data-rangliste'):'',modus='lokal';
 function el(n,a,t){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e}
 var hudL=el('text',{'class':'hud',x:8,y:24}),hudR=el('text',{'class':'hud',x:552,y:24,'text-anchor':'end'});svg.appendChild(hudL);svg.appendChild(hudR);
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
@@ -309,16 +310,16 @@ function sauber(v){return String(v||'').replace(/[^\p{L}\p{M}\- ']/gu,'').replac
 function pad(n){return('000000'+n).slice(-6)}
 function best(){return Math.max(top.length?top[0].score:0,pts)}
 function hud(){var z=on||pts>0;hudL.textContent=z?'SCORE '+pad(pts):'';hudR.textContent=z||top.length?'BEST '+pad(best()):'';}
-function render(){liste.textContent='';box.hidden=!top.length&&form.hidden;
+function render(){liste.textContent='';box.hidden=!top.length&&form.hidden&&!ov;
 if(!top.length){var l=document.createElement('li');l.className='leer';l.textContent='Noch keine Einträge. Sei die oder der Erste!';liste.appendChild(l);return}
 top.forEach(function(x,i){var li=document.createElement('li'),r=document.createElement('span'),n=document.createElement('span'),p=document.createElement('strong');
-r.className='rang';r.textContent=(i+1)+'.';n.textContent=sauber(x.name)||'Anonym';p.textContent=pad(x.score);li.appendChild(r);li.appendChild(n);li.appendChild(p);if(x.id===neuId)li.className='neu';liste.appendChild(li)});}
+r.className='rang';r.textContent=(i+1)+'.';n.textContent=sauber(x.name)||'Anonym';p.textContent=pad(x.score);li.appendChild(r);li.appendChild(n);li.appendChild(p);if(neuId&&x.name===neuId.name&&x.score===neuId.score)li.className='neu';liste.appendChild(li)});}
 function dauer(){return Math.max(420,1500*Math.pow(.92,level-1))}
 function zeig(){if(!on)return;var f;do{f=F[Math.floor(Math.random()*F.length)]}while(f===cur);cur=f;f.classList.add('da');seit=Date.now();
 tm=setTimeout(function(){if(on)fertig(f)},dauer());}
 function plus(f,t,c){var b=f.getBBox(),x=el('text',{'class':c||'plus',x:b.x+b.width/2,y:b.y+4,'text-anchor':'middle'},t);svg.appendChild(x);setTimeout(function(){x.remove()},900)}
 function meldung(t){st.textContent=t;st.classList.remove('blink');void st.getBBox();st.classList.add('blink')}
-function fertig(f){on=false;clearTimeout(tm);svg.classList.remove('spielt');F.forEach(function(x){x.classList.remove('da')});
+function fertig(f){on=false;dauerSpiel=Date.now()-t0;clearTimeout(tm);svg.classList.remove('spielt');F.forEach(function(x){x.classList.remove('da')});
 ov=el('g',{'class':'gameover'});ov.appendChild(el('rect',{x:0,y:34,width:560,height:372}));
 ov.appendChild(el('text',{'class':'go1',x:280,y:170,'text-anchor':'middle'},'GAME OVER'));
 ov.appendChild(el('text',{'class':'go2',x:280,y:206,'text-anchor':'middle'},'Verpasst! '+gruss+(gruss==1?' Nachbar':' Nachbarn')+' gegrüßt'));
@@ -326,21 +327,28 @@ ov.appendChild(el('text',{'class':'go3',x:280,y:250,'text-anchor':'middle'},'SCO
 if(pts>0&&(!top.length||pts>top[0].score))ov.appendChild(el('text',{'class':'go2 rekord',x:280,y:282,'text-anchor':'middle'},'Neuer Rekord!'));
 svg.appendChild(ov);st.textContent='';hud();
 btn.textContent='Nochmal spielen →';btn.disabled=false;
-if(pts>0&&(top.length<10||pts>top[top.length-1].score)){offen=pts;hin.textContent='';sub.disabled=false;inp.value=ls(NKEY)||'';form.hidden=false;box.hidden=false;
-var r=form.getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)form.scrollIntoView({block:'center',behavior:'smooth'});try{inp.focus({preventScroll:true})}catch(e){}}else{offen=0;form.hidden=true}render();}
+box.hidden=false;if(pts>0&&(top.length<10||pts>top[top.length-1].score)){offen={score:pts,gruss:gruss,dauer:dauerSpiel};hin.textContent='';sub.disabled=false;inp.value=ls(NKEY)||'';form.hidden=false;box.hidden=false;
+var r=form.getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)form.scrollIntoView({block:'center',behavior:'smooth'});try{inp.focus({preventScroll:true})}catch(e){}}else{offen=null;form.hidden=true}render();laden_();}
 F.forEach(function(f){f.addEventListener('pointerdown',function(){if(!on||!f.classList.contains('da'))return;
 var rt=Date.now()-seit,n=(10+Math.round(10*Math.max(0,1-rt/dauer())))*level;pts+=n;gruss++;
 f.classList.remove('da');f.classList.add('gegruesst');setTimeout(function(){f.classList.remove('gegruesst')},700);plus(f,'+'+n);
 if(gruss%5==0){level++;meldung('LEVEL '+level)}
 clearTimeout(tm);cur=f;hud();tm=setTimeout(zeig,Math.max(120,320*Math.pow(.92,level-1)));});});
-btn.addEventListener('click',function(){if(on)return;if(ov){ov.remove();ov=null}on=true;pts=0;gruss=0;level=1;form.hidden=true;offen=0;render();
+btn.addEventListener('click',function(){if(on)return;if(ov){ov.remove();ov=null}on=true;pts=0;gruss=0;level=1;t0=Date.now();form.hidden=true;offen=null;render();
 F.forEach(function(f){f.classList.remove('klapp')});svg.classList.add('spielt');btn.disabled=true;
 requestAnimationFrame(function(){var r=svg.getBoundingClientRect();if(r.bottom>innerHeight)svg.scrollIntoView({block:'end',behavior:'smooth'})});
 btn.textContent='Grüß alle, keinen verpassen!';hud();meldung('LEVEL 1');tm=setTimeout(zeig,700);});
+function lokal_(name,o){neuId={name:name,score:o.score};top=top.concat([{name:name,score:o.score,at:Date.now()}]).sort(sortf).slice(0,10);ls(LKEY,JSON.stringify(top));}
+function laden_(){if(!API)return;fetch(API).then(function(r){return r.json()}).then(function(d){if(d&&d.ok&&Array.isArray(d.top)){modus='online';top=d.top;render();hud()}}).catch(function(){})}
 form.addEventListener('submit',function(ev){ev.preventDefault();if(!offen)return;var name=sauber(inp.value);
-if(!name){hin.textContent='Bitte gib deinen Namen ein.';inp.focus();return}ls(NKEY,name);
-neuId='l'+Date.now();top=top.concat([{id:neuId,name:name,score:offen,at:Date.now()}]).sort(sortf).slice(0,10);ls(LKEY,JSON.stringify(top));offen=0;form.hidden=true;render();hud();});
-top=laden();render();hud();
+if(!name){hin.textContent='Bitte gib deinen Namen ein.';inp.focus();return}ls(NKEY,name);var o=offen;
+if(!API){lokal_(name,o);offen=null;form.hidden=true;render();hud();return}
+sub.disabled=true;hin.textContent='Wird eingetragen …';
+fetch(API,{method:'POST',body:JSON.stringify({name:name,score:o.score,gruss:o.gruss,dauer:o.dauer})}).then(function(r){return r.json()}).then(function(d){
+if(d&&d.ok){modus='online';top=d.top;neuId={name:name,score:o.score};offen=null;form.hidden=true;render();hud();}
+else{sub.disabled=false;hin.textContent=d&&d.fehler==='zuviel'?'Gerade sind sehr viele Einträge unterwegs. Bitte gleich nochmal versuchen.':'Das hat leider nicht geklappt.'}
+}).catch(function(){sub.disabled=false;hin.textContent='Keine Verbindung. Bitte nochmal versuchen.'});});
+top=API?[]:laden();render();hud();laden_();
 })();
 </script>
   <section class="block" id="verein" style="border-top:0">
