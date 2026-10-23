@@ -224,10 +224,6 @@ footer a{color:var(--ink-muted)}
 .pagehead{padding-block:var(--s6) 0;display:grid;gap:var(--s3)}
 .pagehead h1{font-size:clamp(32px,5vw,48px);line-height:1.05;letter-spacing:-.01em}
 .heart{color:#8e1f2f}
-.spur{display:inline-flex;vertical-align:middle;margin-left:10px;color:var(--ziegel);opacity:.28;transition:opacity .3s}
-.spur:hover,.spur:focus-visible{opacity:1}
-.spur:focus-visible{outline:none;box-shadow:var(--focus);border-radius:3px}
-@media (prefers-reduced-motion:reduce){.spur{transition:none}}
 footer{position:relative;overflow:hidden}
 footer .wrap{position:relative;z-index:1}
 .wanderung{position:absolute;inset:0;z-index:0;pointer-events:none}
@@ -525,7 +521,7 @@ top=API?[]:laden();render();hud();
 <footer>
   <div class="wrap">
     <span>Unser Birkenhof e.V. i. G. · www.unser-birkenhof.de</span>
-    <span>Made with <span class="heart" aria-label="Liebe">♥</span> in Augsburg<a class="spur" href="hausverwaltung.html" title="Wohin führen diese Spuren?" aria-label="Wohin führen diese Spuren?"><svg viewBox="0 0 44 14" width="44" height="14" aria-hidden="true" fill="currentColor"><ellipse cx="4" cy="9.5" rx="2" ry="3" transform="rotate(80 4 9.5)"/><ellipse cx="11" cy="4.5" rx="2" ry="3" transform="rotate(80 11 4.5)"/><ellipse cx="19" cy="9.5" rx="2" ry="3" transform="rotate(80 19 9.5)"/><ellipse cx="26" cy="4.5" rx="2" ry="3" transform="rotate(80 26 4.5)"/><ellipse cx="34" cy="9.5" rx="2" ry="3" transform="rotate(80 34 9.5)"/><ellipse cx="41" cy="4.5" rx="2" ry="3" transform="rotate(80 41 4.5)"/></svg></a></span>
+    <span>Made with <span class="heart" aria-label="Liebe">♥</span> in Augsburg</span>
     <span><a href="satzung.html">Satzung</a> · <a href="beitragsordnung.html">Beitragsordnung</a> · <a href="design.html">Gestaltung</a> · <a href="impressum.html#impressum">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
   </div>
   <div class="wanderung" aria-hidden="true"></div>
