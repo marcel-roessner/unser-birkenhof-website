@@ -228,6 +228,13 @@ footer a{color:var(--ink-muted)}
 .spur:hover,.spur:focus-visible{opacity:1}
 .spur:focus-visible{outline:none;box-shadow:var(--focus);border-radius:3px}
 @media (prefers-reduced-motion:reduce){.spur{transition:none}}
+footer{position:relative;overflow:hidden}
+footer .wrap{position:relative;z-index:1}
+.wanderung{position:absolute;inset:0;z-index:0;pointer-events:none}
+.wanderung a{position:absolute;width:10px;height:16px;margin:-8px 0 0 -5px;color:var(--ziegel);opacity:0;transition:opacity .5s ease;pointer-events:auto;cursor:pointer}
+.wanderung a.da{opacity:.42}
+.wanderung a.weg{opacity:0;transition-duration:1.4s}
+.wanderung svg{display:block;width:100%;height:100%}
 .doc{padding-block:0 var(--s6);display:grid;gap:var(--s5)}
 .docmeta{color:var(--ink-muted);font-size:15px}
 .toc{border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);padding:var(--s3) 0;max-width:68ch}
@@ -521,6 +528,56 @@ top=API?[]:laden();render();hud();
     <span>Made with <span class="heart" aria-label="Liebe">♥</span> in Augsburg<a class="spur" href="hausverwaltung.html" title="Wohin führen diese Spuren?" aria-label="Wohin führen diese Spuren?"><svg viewBox="0 0 44 14" width="44" height="14" aria-hidden="true" fill="currentColor"><ellipse cx="4" cy="9.5" rx="2" ry="3" transform="rotate(80 4 9.5)"/><ellipse cx="11" cy="4.5" rx="2" ry="3" transform="rotate(80 11 4.5)"/><ellipse cx="19" cy="9.5" rx="2" ry="3" transform="rotate(80 19 9.5)"/><ellipse cx="26" cy="4.5" rx="2" ry="3" transform="rotate(80 26 4.5)"/><ellipse cx="34" cy="9.5" rx="2" ry="3" transform="rotate(80 34 9.5)"/><ellipse cx="41" cy="4.5" rx="2" ry="3" transform="rotate(80 41 4.5)"/></svg></a></span>
     <span><a href="satzung.html">Satzung</a> · <a href="beitragsordnung.html">Beitragsordnung</a> · <a href="design.html">Gestaltung</a> · <a href="impressum.html#impressum">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></span>
   </div>
+  <div class="wanderung" aria-hidden="true"></div>
+  <script>
+  (function(){
+    var box=document.querySelector('footer .wanderung');
+    if(!box||!window.matchMedia||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var FUSS='<svg viewBox="0 0 10 16"><ellipse cx="5" cy="5.5" rx="4" ry="5.2" fill="currentColor"/><ellipse cx="5" cy="13" rx="3" ry="2.8" fill="currentColor"/></svg>';
+    var aktiv=0,MAX=2;
+    function zufall(a,b){return a+Math.random()*(b-a);}
+    function abdruck(x,y,winkel){
+      var a=document.createElement('a');
+      a.href='hausverwaltung.html';a.tabIndex=-1;a.innerHTML=FUSS;
+      a.style.left=x+'px';a.style.top=y+'px';a.style.transform='rotate('+(winkel+90)+'deg)';
+      box.appendChild(a);
+      requestAnimationFrame(function(){requestAnimationFrame(function(){a.classList.add('da');});});
+      setTimeout(function(){a.classList.add('weg');},zufall(2200,3200));
+      setTimeout(function(){a.remove();},zufall(4000,4800));
+    }
+    function wanderer(){
+      var w=box.clientWidth,h=box.clientHeight;
+      if(w<200||document.hidden){return;}
+      aktiv++;
+      var vonLinks=Math.random()<.5,rand=12;
+      var x=vonLinks?-10:w+10,y=zufall(rand,h-rand);
+      var basis=vonLinks?0:180,winkel=basis+zufall(-20,20);
+      // manchmal mitten im Footer auftauchen und wieder verschwinden
+      var schritte=Infinity;
+      if(Math.random()<.2){x=zufall(w*.15,w*.85);schritte=Math.round(zufall(8,22));}
+      var seite=1,n=0,tempo=zufall(330,460);
+      (function schritt(){
+        winkel+=zufall(-9,9);winkel=Math.max(basis-35,Math.min(basis+35,winkel));
+        var r=winkel*Math.PI/180;
+        x+=Math.cos(r)*13;y+=Math.sin(r)*13;
+        if(y<rand){y=rand;winkel=2*basis-winkel+zufall(5,15)*(vonLinks?1:-1);}
+        if(y>h-rand){y=h-rand;winkel=2*basis-winkel-zufall(5,15)*(vonLinks?1:-1);}
+        var px=x+Math.cos(r+Math.PI/2)*4.5*seite,py=y+Math.sin(r+Math.PI/2)*4.5*seite;
+        seite=-seite;n++;
+        if(px>-12&&px<w+12)abdruck(px,py,winkel);
+        var raus=x<-30||x>w+30;
+        if(raus||n>=schritte||n>2000){aktiv--;return;}
+        if(Math.random()<.03){setTimeout(schritt,zufall(900,1600));return;} // kurz stehen bleiben
+        setTimeout(schritt,tempo);
+      })();
+    }
+    function takt(){
+      if(!document.hidden&&aktiv<MAX&&Math.random()<(aktiv?.25:.8))wanderer();
+      setTimeout(takt,zufall(3500,9000));
+    }
+    setTimeout(takt,zufall(1500,4000));
+  })();
+  </script>
 </footer>
 </body>
 </html>
